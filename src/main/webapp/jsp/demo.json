@@ -1,0 +1,64 @@
+[{
+	"text":"货品选择",
+	"iconCls":"icon-folder",
+	"children":[{
+		"id":11,
+		"text":"Photos",
+		"iconCls":"icon-folder",
+		"state":"closed",
+		"children":[{
+			"id":111,
+			"iconCls":"icon-doc",
+			"text":"Friend"
+		},{
+			"id":112,
+			"iconCls":"icon-doc",
+			"text":"Wife"
+		},{
+			"id":113,
+			"iconCls":"icon-doc",
+			"text":"Company"
+		}]
+	},{
+		"id":12,
+		"text":"Program Files",
+		"iconCls":"icon-folder",
+		"children":[{
+			"id":121,
+			"iconCls":"icon-doc",
+			"text":"Intel"
+		},{
+			"id":122,
+			"text":"Java",
+			"iconCls":"icon-doc",
+			"attributes":{
+				"p1":"Custom Attribute1",
+				"p2":"Custom Attribute2"
+			}
+		},{
+			"id":123,
+			"iconCls":"icon-doc",
+			"text":"Microsoft Office"
+		},{
+			"id":124,
+			"iconCls":"icon-doc",
+			"text":"Games",
+			"checked":true
+		}]
+	},{
+		"id":13,
+		"iconCls":"icon-doc",
+		"text":"index.html"
+	},{
+		"id":14,
+		"iconCls":"icon-doc",
+		"text":"about.html"
+	},{
+		"id":15,
+		"iconCls":"icon-doc",
+		"text":"弹出测试",
+		"attributes":{
+		  "url":"user.html"
+		}
+	}]
+}]

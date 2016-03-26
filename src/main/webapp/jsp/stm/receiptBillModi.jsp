@@ -6,110 +6,38 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	var status = $("#status").val();
-	$('.add').on('click',function(){
+	$('.add').bind('click',function(){
 		if(status!=1){
 			$mainDialog.dialog({
 				iconCls: 'icon-edit',
-				width:800,
-				height:400,
+				width:600,
+				height:380,
 				title:'新增货品',
-				href : 'user.html',
+				href : '<%=request.getContextPath()%>/stm/productTypeLookUpInit.action',
 				modal: 'true',
 				buttons: [{
 							text:'添加',
-							iconCls:'icon-ok',
+							iconCls:'icon-add',
 							handler:function(){
 								alert('ok');
 							}
 						  },{
 							text:'取消',
+							iconCls:'icon-cancel',
 							handler:function(){
-								alert('cancel');;
+								$mainDialog.dialog('destroy');
 							}
 						  }]
 			});
 		}
 	});
-	/*
-	$('.add').click(function(){
-		alert("sss");
-		if(status!=1){
-			$mainDialog.dialog({
-				iconCls: 'icon-edit',
-				width:800,
-				height:400,
-				title:'新增用户',
-				href : 'user.html',
-				modal: 'true',
-				buttons: [{
-							text:'Ok',
-							iconCls:'icon-ok',
-							handler:function(){
-								alert('ok');
-							}
-						},{
-							text:'Cancel',
-							handler:function(){
-								alert('cancel');;
-							}
-						}]
-			});
-		}	
-	});*/
 });
-function ajaxGetProductTypeList(){
-	var groupId=$("#selectGroupId").val(); 
-	$.ajax({
-		cache:false,   
-        url:'<%=request.getContextPath()%>/common/ajaxGetProductTypeList.action',   
-        type:'post',   
-        dataType:'json',   
-        data:{groupId:groupId},   
-        success:callBack
-	});
-}
-function callBack(productTypeList){
-	if(productTypeList.length > 0){
-		$("#groupType").empty();
-		for(var i in productTypeList){
-		    var name = productTypeList[i].name;
-		    var typeId = productTypeList[i].typeId;
-		    var str = "<option value='" + typeId + "'>" + name + "</option>";
-		    $("#groupType").append(str);
-	    }
-		$("#guige").val(productTypeList[0].norm);
-		$("#danwei").val(productTypeList[0].unit);
-		$("#danjia").val(productTypeList[0].refInPrice);
-	}else{
-		$("#groupType").empty();
-		$("#guige").val('');
-		$("#danwei").val('');
-		$("#danjia").val('');
-	}
-}
-function ajaxGetProductType(){
-	var groupId=$("#selectGroupId").val();
-	var typeId=$("#groupType").val(); 
-	$.ajax({
-		cache:false,   
-        url:'<%=request.getContextPath()%>/common/ajaxGetProductType.action',   
-        type:'post',   
-        dataType:'json',   
-        data:{groupId:groupId,typeId:typeId},   
-        success:setinfo
-	});
-}
 function receiptBillUpdate(){
-	/*
-	$('#receiptBillForm').form('submit',{
-		onSubmit:function(){
-			return $(this).form('enableValidation').form('validate');
-		},
-		success:function(){
+	$main.messager.confirm('系统提示', '输入无误,确认提交?', function(r){
+		if (r){
 			document.receiptBillForm.submit();
 		}
-	});*/
-	document.receiptBillForm.submit();
+	});
 }
 function getBack(){
 	var docketType = $("#docketType").val();
