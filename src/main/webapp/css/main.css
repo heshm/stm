@@ -1,0 +1,54 @@
+
+.header{
+	width: 100%;
+	height: 60px;
+	background: url(../img/top.png) no-repeat right center;
+	padding: 10px"
+}
+.logo{ 
+	float: left; 
+	width: 365PX; 
+	height: 50px; 
+}
+.logo img { 
+	margin: 6px 0 0 25px 
+}
+.title_right{ 
+	font-size:12px;
+	font-family:"microsoft yahei"; 
+	border-bottom:1px solid #ddd; 
+	margin-bottom:20px; 
+	line-height:30px;
+}
+.title_right strong{ 
+	border-bottom:1px solid #F60;
+	line-height:30px; 
+	display:inline-block; 
+	padding:0 10px; 
+	margin-bottom:-1px;}
+
+.footer{
+	height: 20px;
+	background: #666464; 
+	padding: 1px;
+	text-align: center; 
+	color: #ccc;
+}
+.collapsed{
+	font-family:"microsoft yahei"; 
+	font-size:15px; 
+	color:#38A3D5; 
+	font-weight:bold;
+}
+.header-right { 
+	float: right; 
+	padding-left: 50px; 
+}
+.header-right a { 
+	color: #fff; 
+	line-height: 60px; 
+	margin-right: 20px; 
+}
+	
+
+

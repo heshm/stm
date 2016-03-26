@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.2//EN" "http://struts.apache.org/dtds/xwork-validator-1.0.2.dtd">
+<validators>
+
+	<field name="receiptBillForm.receipt.registrant">
+		<field-validator type="requiredstring" short-circuit="true">
+			<param name="trim">true</param>
+			<message>入库人不能为空!</message>
+		</field-validator>
+	</field>
+	
+	<field name="receiptBillForm.receipt.supplier">
+		<field-validator type="requiredstring" short-circuit="true">
+			<param name="trim">true</param>
+			<message>入库日期不能为空!</message>
+		</field-validator>
+	</field>
+
+</validators>

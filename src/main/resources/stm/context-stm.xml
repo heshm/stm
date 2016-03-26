@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/tx
+           http://www.springframework.org/schema/tx/spring-tx.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="receiptDAO" class="com.erp.stm.DAOImpl.ReceiptDAO">
+		<property name="sqlSession" ref="sqlSession" />
+	</bean>
+	
+	<bean id="receiptDetailDAO" class="com.erp.stm.DAOImpl.ReceiptDetailDAO">
+		<property name="sqlSession" ref="sqlSession" />
+	</bean>
+	
+	<bean id="inventoryDAO" class="com.erp.stm.DAOImpl.InventoryDAO">
+		<property name="sqlSession" ref="sqlSession" />
+	</bean>
+	
+	<bean id="deliveryDAO" class="com.erp.stm.DAOImpl.DeliveryDAO">
+		<property name="sqlSession" ref="sqlSession" />
+	</bean>
+	
+	<bean id="deliveryDetailDAO" class="com.erp.stm.DAOImpl.DeliveryDetailDAO">
+		<property name="sqlSession" ref="sqlSession" />
+	</bean>
+
+    <bean id="inventoryService" class="com.erp.stm.serviceImpl.InventoryService">
+		<property name="inventoryDAO" ref="inventoryDAO" />
+	</bean>
+
+	<bean id="receiptService" class="com.erp.stm.serviceImpl.ReceiptService">
+		<property name="receiptDAO" ref="receiptDAO" />
+	</bean>
+	
+	<bean id="receiptDetailService" class="com.erp.stm.serviceImpl.ReceiptDetailService">
+		<property name="receiptDetailDAO" ref="receiptDetailDAO" />
+	</bean>
+	
+	<bean id="receiptBillService" class="com.erp.stm.serviceImpl.ReceiptBillService">
+	    <property name="receiptDAO" ref="receiptDAO" />
+		<property name="receiptDetailDAO" ref="receiptDetailDAO" />
+		<property name="inventoryDAO" ref="inventoryDAO" />
+	</bean>
+	
+	<bean id="deliveryService" class="com.erp.stm.serviceImpl.DeliveryService">
+		<property name="deliveryDAO" ref="deliveryDAO" />
+	</bean>
+	
+	<bean id="deliveryDetailService" class="com.erp.stm.serviceImpl.DeliveryDetailService">
+		<property name="deliveryDetailDAO" ref="deliveryDetailDAO" />
+	</bean>
+	
+	<bean id="deliveryBillService" class="com.erp.stm.serviceImpl.DeliveryBillService">
+	    <property name="deliveryDAO" ref="deliveryDAO" />
+		<property name="deliveryDetailDAO" ref="deliveryDetailDAO" />
+		<property name="inventoryDAO" ref="inventoryDAO" />
+	</bean>
+
+</beans>

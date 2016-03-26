@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+    <definition name="main.index" template="/jsp/layout.jsp">
+        <put-attribute name="menu" value="/jsp/menu.jsp"/>
+        <put-attribute name="head" value="/jsp/head.jsp"/>
+        <put-attribute name="main" value="/jsp/index.jsp"/>
+    </definition>
+    
+    <definition name="main.body" template="/jsp/bodyTemplate.jsp">
+        
+    </definition>
+    
+    <!-- common -->
+    <definition name="erp.common.user" extends="main.body">
+        <put-attribute name="body" value="/jsp/common/user.jsp"/>
+    </definition>
+    
+    <definition name="erp.common.productGroup" extends="main.body">
+        <put-attribute name="body" value="/jsp/common/productGroup.jsp"/>
+    </definition>
+    
+    <definition name="erp.common.productGroupModi" extends="main.body">
+        <put-attribute name="body" value="/jsp/common/productGroupModi.jsp"/>
+    </definition>
+    
+    <definition name="erp.common.productType" extends="main.body">
+        <put-attribute name="body" value="/jsp/common/productType.jsp"/>
+    </definition>
+    
+    <definition name="erp.common.productTypeModi" extends="main.body">
+        <put-attribute name="body" value="/jsp/common/productTypeModi.jsp"/>
+    </definition>
+    
+    <!-- stm -->
+    
+    
+    <definition name="erp.stm.receiptBill" extends="main.body">
+        <put-attribute name="body" value="/jsp/stm/receiptBill.jsp"/>
+    </definition>
+    
+    <definition name="erp.stm.receiptBillModi" extends="main.body">
+        <put-attribute name="body" value="/jsp/stm/receiptBillModi.jsp"/>
+    </definition>
+    
+    <definition name="erp.stm.deliveryBill" extends="main.body">
+        <put-attribute name="body" value="/jsp/stm/deliveryBill.jsp"/>
+    </definition>
+    
+    <definition name="erp.stm.deliveryBillModi" extends="main.body">
+        <put-attribute name="body" value="/jsp/stm/deliveryBillModi.jsp"/>
+    </definition>
+    
+    <!-- report -->
+    
+    <definition name="erp.report.inventoryReport" extends="main.body">
+        <put-attribute name="body" value="/jsp/report/inventoryReport.jsp"/>
+    </definition>
+    
+    <definition name="erp.report.billReport" extends="main.body">
+        <put-attribute name="body" value="/jsp/report/billReport.jsp"/>
+    </definition>
+    
+</tiles-definitions>

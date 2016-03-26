@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="report" namespace="/report" extends="tiles-default">
+		<action name="inventoryReportInit" class="com.erp.report.action.InventoryReoprtAction" method="init">
+			<result name="success" type="tiles">erp.report.inventoryReport</result>
+		</action>
+		
+		<action name="inventoryReportQuery" class="com.erp.report.action.InventoryReoprtAction" method="query">
+			<result name="success" type="tiles">erp.report.inventoryReport</result>
+		</action>
+		
+		<action name="billReportInit" class="com.erp.report.action.BillReoprtAction" method="init">
+			<result name="success" type="tiles">erp.report.billReport</result>
+		</action>
+		
+		<action name="billReportQuery" class="com.erp.report.action.BillReoprtAction" method="query">
+			<result name="success" type="tiles">erp.report.billReport</result>
+		</action>
+		
+		<action name="billReportDetail" class="com.erp.report.action.BillReoprtAction" method="getInfo">
+			<result name="receipt">/jsp/report/receiptShow.jsp</result>
+			<result name="delivery">/jsp/report/deliveryShow.jsp</result>
+		</action>
+
+	</package>
+</struts>

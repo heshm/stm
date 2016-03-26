@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+         "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<package name="com.erp.common.model" />
+		<package name="com.erp.stm.model" />
+        <package name="com.erp.report.model" />
+	</typeAliases>
+	<mappers>
+	    <mapper resource="common/sql-page.xml" />
+		<mapper resource="common/sql-common.xml" />
+		<mapper resource="stm/sql-stm.xml" />
+		<mapper resource="report/sql-report.xml" />
+	</mappers>
+
+</configuration>	

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="common" namespace="/common" extends="tiles-default,json-default">
+	   
+	    <action name="passChange" class="com.erp.common.action.UserAction" method="changePass">
+			<result type="json">
+		        <param name="root">message</param>
+		    </result>
+		</action>
+		
+		<action name="userInit" class="com.erp.common.action.UserAction" method="init">
+			<result name="success" type="tiles">erp.common.user</result>
+		</action>
+		
+		<action name="userDelete" class="com.erp.common.action.UserAction" method="delete">
+            <result name="success" type="tiles">erp.common.user</result>
+        </action>
+		
+		<action name="userModiInit" class="com.erp.common.action.UserModiAction" method="init">
+			<result name="success">/jsp/common/userModi.jsp</result>
+		</action>
+		
+		<action name="userModi" class="com.erp.common.action.UserModiAction" method="modi"/>
+		   
+      
+
+		<action name="indexInit" class="com.erp.common.action.IndexAction" method="init">
+			<result name="success" type="tiles">main.index</result>
+			<result name="error">/jsp/error.jsp</result>
+		</action>
+		
+		<action name="productGroupInit" class="com.erp.common.action.ProductGroupAction" method="init">
+		    <result name="success" type="tiles">erp.common.productGroup</result>
+		</action>
+		
+		<action name="productGroupModiInit" class="com.erp.common.action.ProductGroupModiAction" method="init">
+		    <result name="success" type="tiles">erp.common.productGroupModi</result>
+		</action>
+		
+		<action name="productGroupModi" class="com.erp.common.action.ProductGroupModiAction" method="modi">
+		    <result name="success" type="redirectAction">
+				<param name="namespace">/common</param>
+				<param name="actionName">productGroupInit</param>
+			</result>
+		</action>
+		
+		<action name="productGroupDelete" class="com.erp.common.action.ProductGroupModiAction" method="delete">
+		    <result name="success" type="redirectAction">
+				<param name="namespace">/common</param>
+				<param name="actionName">productGroupInit</param>
+			</result>
+		</action>
+		
+		<action name="productTypeInit" class="com.erp.common.action.ProductTypeAction" method="init">
+		    <result name="success" type="tiles">erp.common.productType</result>
+		</action>
+		
+		<action name="productTypeQuery" class="com.erp.common.action.ProductTypeAction" method="query">
+		    <result name="success" type="tiles">erp.common.productType</result>
+		</action>
+		
+		<action name="productTypeDelete" class="com.erp.common.action.ProductTypeAction" method="delete">
+		    <result name="success" type="tiles">erp.common.productType</result>
+		</action>
+		
+		<action name="productTypeModiInit" class="com.erp.common.action.ProductTypeModiAction" method="init">
+		    <result name="success" type="tiles">erp.common.productTypeModi</result>
+		</action>
+		
+		<action name="productTypeUpdate" class="com.erp.common.action.ProductTypeModiAction" method="update">
+		    <result name="success" type="tiles">erp.common.productTypeModi</result>
+		</action>
+		
+		<action name="productTypeInsert" class="com.erp.common.action.ProductTypeModiAction" method="insert">
+		    <result name="success" type="tiles">erp.common.productTypeModi</result>
+		</action>
+		
+		<action name="ajaxGetProductTypeList" class="com.erp.common.action.StaticModal" method="ajaxGetProductTypeList">
+		    <result type="json">
+		        <param name="root">productTypeList</param>
+		    </result>
+		</action>
+		<action name="ajaxGetProductType" class="com.erp.common.action.StaticModal" method="ajaxGetProductType">
+		    <result type="json">
+		        <param name="root">productType</param>
+		    </result>
+		</action>
+		
+		<action name="ajaxGetInventory" class="com.erp.common.action.StaticModal" method="ajaxGetInventory">
+		    <result type="json">
+		        <param name="root">inventory</param>
+		    </result>
+		</action>
+		
+	</package>
+</struts>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="stm">
+
+    <resultMap id="InventoryReportMap" type="InventoryReport" >
+        <result column="DEPOT_ID" property="depotId" jdbcType="CHAR" />
+        <result column="COMMODITY_TYPE" property="commodityType" jdbcType="CHAR" />
+        <result column="IN_AVERAGE_PRICE" property="inAveragePrice" jdbcType="DECIMAL" />
+        <result column="IN_QUANTITY" property="inQuantity" jdbcType="REAL" />
+        <result column="IN_AMOUNT" property="inAmount" jdbcType="DECIMAL" />
+        <result column="IN_TAX_AMT" property="inTaxAmt" jdbcType="DECIMAL" />
+        <result column="IN_AVERAGE_TAX_RATE" property="inAverageTaxRate" jdbcType="DECIMAL" />
+        <result column="OUT_AVERAGE_PRICE" property="outAveragePrice" jdbcType="DECIMAL" />
+        <result column="OUT_QUANTITY" property="outQuantity" jdbcType="REAL" />
+        <result column="OUT_AMOUNT" property="outAmount" jdbcType="DECIMAL" />
+        <result column="OUT_TAX_AMT" property="outTaxAmt" jdbcType="DECIMAL" />
+        <result column="OUT_AVERAGE_TAX_RATE" property="outAverageTaxRate" jdbcType="DECIMAL" />
+        <result column="GROUP_NAME" property="groupName" jdbcType="CHAR" />
+        <result column="NAME" property="name" jdbcType="CHAR" />
+        <result column="UNIT" property="unit" jdbcType="CHAR" />
+    </resultMap>
+    
+    
+    <sql id="InventoryReportWhere">
+        <where>
+            <if test="depotId != null and depotId != ''" >
+                DEPOT_ID = #{depotId,jdbcType=CHAR}
+            </if>
+            <if test="commodityType != null and commodityType != ''" >
+                AND COMMODITY_TYPE LIKE CONCAT(#{commodityType,jdbcType=CHAR},'%') 
+            </if>
+            <if test="name != null and name != ''" >
+                AND NAME LIKE CONCAT('%',#{name,jdbcType=CHAR},'%') 
+            </if>
+        </where>
+    </sql>
+    
+    <select id="selectInventoryReportPageCnt" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM
+            TB_INVENTORY A
+        LEFT JOIN
+            TB_PRODUCT_TYPE B
+        ON
+            SUBSTR(A.COMMODITY_TYPE,1,2) = B.GROUP_ID
+        AND SUBSTR(A.COMMODITY_TYPE,3,3) = B.TYPE_ID
+        LEFT JOIN
+            TB_PRODUCT_GROUP C
+        ON
+            SUBSTR(A.COMMODITY_TYPE,1,2) = C.GROUP_ID
+        <include refid="InventoryReportWhere" />
+    </select>
+    
+    <select id="selectInventoryReportPageData" resultMap="InventoryReportMap">
+        <include refid="page.pageSelectList" />
+        SELECT
+            DEPOT_ID,
+            COMMODITY_TYPE,
+            IN_AVERAGE_PRICE,
+            IN_QUANTITY,
+            IN_AMOUNT,
+            IN_TAX_AMT,
+            IN_AVERAGE_TAX_RATE,
+            OUT_AVERAGE_PRICE,
+            OUT_QUANTITY,
+            OUT_AMOUNT,
+            OUT_TAX_AMT,
+            OUT_AVERAGE_TAX_RATE,
+            GROUP_NAME,
+            NAME,
+            UNIT
+        FROM
+            TB_INVENTORY A
+        LEFT JOIN
+            TB_PRODUCT_TYPE B
+        ON
+            SUBSTR(A.COMMODITY_TYPE,1,2) = B.GROUP_ID
+        AND SUBSTR(A.COMMODITY_TYPE,3,3) = B.TYPE_ID
+        LEFT JOIN
+            TB_PRODUCT_GROUP C
+        ON
+            SUBSTR(A.COMMODITY_TYPE,1,2) = C.GROUP_ID
+        <include refid="InventoryReportWhere" />
+        <include refid="page.pageWhereList" />
+    </select>
+    
+    <resultMap id="BillReportMap" type="BillReport" >
+        <result column="depot_id" property="depotId" jdbcType="CHAR" />
+        <result column="bill_no" property="billNo" jdbcType="CHAR" />
+        <result column="type" property="type" jdbcType="CHAR" />
+        <result column="status" property="status" jdbcType="CHAR" />
+        <result column="registrant" property="registrant" jdbcType="CHAR" />
+        <result column="auditor" property="auditor" jdbcType="CHAR" />
+        <result column="write_date" property="writeDate" jdbcType="CHAR" />
+        <result column="confirm_date" property="confirmDate" jdbcType="CHAR" />
+    </resultMap>
+    
+    <sql id="BillReportWhere">
+        <where>
+            <if test="depotId != null and depotId != ''" >
+                DEPOT_ID = #{depotId,jdbcType=CHAR}
+            </if>
+            <if test="startDate != null and startDate != ''">
+	            AND SUBSTR(WRITE_DATE,1,10) &gt;= #{startDate,jdbcType=CHAR}
+	        </if>
+	        <if test="endDate != null and endDate != ''">
+	            AND SUBSTR(WRITE_DATE,1,10) &lt;= #{endDate,jdbcType=CHAR}
+	        </if>
+	        <if test="type != null and type != ''" >
+                AND TYPE = #{type,jdbcType=CHAR}
+            </if>
+        </where>
+    </sql>
+    
+    <select id="selectBillReportPageCnt" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM VW_BILL
+        <include refid="BillReportWhere" />
+    </select>
+    
+    <select id="selectBillReportPageData" resultMap="BillReportMap">
+        <include refid="page.pageSelectList" />
+        SELECT
+            DEPOT_ID,
+            BILL_NO,
+            TYPE,
+            STATUS,
+            REGISTRANT,
+            AUDITOR,
+            WRITE_DATE,
+            CONFIRM_DATE
+        FROM
+            VW_BILL
+        <include refid="BillReportWhere" />
+        <include refid="page.pageWhereList" />
+    </select>
+
+</mapper>
