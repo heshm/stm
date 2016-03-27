@@ -18,6 +18,7 @@
 	        <ul>
 		        <li data-options="iconCls:'icon-doc',attributes:{'url':'<%=request.getContextPath()%>/stm/receiptBillInit.action?docketType=1'}">采购入库</li>
 				<li data-options="iconCls:'icon-doc',attributes:{'url':'<%=request.getContextPath()%>/stm/receiptBillInit.action?docketType=2'}">生产入库</li>
+				<li data-options="iconCls:'icon-doc',attributes:{'url':'<%=request.getContextPath()%>/stm/receiptBillInit.action?docketType=0'}">未用退库</li>
 			</ul>
 		</li>
 		<li data-options="iconCls:'icon-folder'"><span>出库登记</span>

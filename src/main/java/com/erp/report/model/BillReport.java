@@ -32,6 +32,9 @@ public class BillReport {
 	}
 	public void setType(String type) {
 		this.type = Const.DEFAULT_EMPTY_STRING;
+		if (Const.DOCKET_TYPE_0.equals(type)){
+			this.type = "未用退库";
+		}
 		if (Const.DOCKET_TYPE_1.equals(type)){
 			this.type = "采购入库";
 		}

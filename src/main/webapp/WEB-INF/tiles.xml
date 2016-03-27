@@ -20,6 +20,10 @@
         <put-attribute name="body" value="/jsp/common/user.jsp"/>
     </definition>
     
+    <definition name="erp.common.userModi" extends="main.body">
+        <put-attribute name="body" value="/jsp/common/userModi.jsp"/>
+    </definition>
+    
     <definition name="erp.common.productGroup" extends="main.body">
         <put-attribute name="body" value="/jsp/common/productGroup.jsp"/>
     </definition>

@@ -10,6 +10,7 @@ public class Const {
 	public static final String DEFAULT_DEPOT_ID = "01";
 	
 	//入库单据类型
+	public static final String DOCKET_TYPE_0 = "0";      //未用退库
 	public static final String DOCKET_TYPE_1 = "1";      //采购入库
 	public static final String DOCKET_TYPE_2 = "2";      //生产入库
 	

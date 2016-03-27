@@ -20,10 +20,12 @@
         </action>
 		
 		<action name="userModiInit" class="com.erp.common.action.UserModiAction" method="init">
-			<result name="success">/jsp/common/userModi.jsp</result>
+			<result name="success" type="tiles">erp.common.userModi</result>
 		</action>
 		
-		<action name="userModi" class="com.erp.common.action.UserModiAction" method="modi"/>
+		<action name="userModi" class="com.erp.common.action.UserModiAction" method="modi">
+		    <result name="success" type="tiles">erp.common.userModi</result>
+		</action>
 		   
       
 

@@ -13,16 +13,17 @@ $(document).ready(function(){
 
     $('.del').on('click',function(){
     	if(status!=1){
-    		//var $_tr = $(this).parents('tr');
-    		if (confirm("确定删除选中货品记录？")) { 
-    			$("#data").find("input[type='checkbox']").each(function(){
-    				if($(this).prop("checked")){
-    					var $_tr = $(this).parents('tr');
-    					$_tr.remove(); 
-    					tableResort($("#data"));
-    				}
-    			});
-    		}
+    		$main.messager.confirm('系统提示', '确定删除选中货品记录?' , function(r){
+    			if (r){
+    				$("#data").find("input[type='checkbox']").each(function(){
+        				if($(this).prop("checked")){
+        					var $_tr = $(this).parents('tr');
+        					$_tr.remove(); 
+        					tableResort($("#data"));
+        				}
+        			});
+    			}
+    		});
     	}
 	});
 	$("#checkAll").click(function(){

@@ -108,11 +108,13 @@ function getBack(){
 <body>
 <div class="title_right">
     <s:if test="%{docketType==1}">
+        <strong>未用退库单填写</strong>
+    </s:if>
+    <s:if test="%{docketType==1}">
         <strong>采购入库单填写</strong>
-
     </s:if>
 	<s:if test="%{docketType==2}">
-       <strong>生产入库单填写</strong>
+        <strong>生产入库单填写</strong>
     </s:if>
 </div>
 <div style="width: 900px; margin: auto;">
@@ -147,7 +149,18 @@ function getBack(){
 			<td align="right" nowrap="nowrap" bgcolor="#f1f1f1">审核状态：</td>
 			<td><s:select id="status" name="receiptBillForm.receipt.status" list="#{'0':'未审核','1':'已审核'}" class="span1-1" theme="simple"/></td>
 			<td align="right" nowrap="nowrap" bgcolor="#f1f1f1">供应商/部门：</td>
-			<td><s:textfield name="receiptBillForm.receipt.supplier"  class="span4" /></td>
+			<td><s:textfield name="receiptBillForm.receipt.supplier" class="span4 easyui-textbox" 
+			    data-options="
+			        prompt: '输入或者选择供应商',
+			        iconWidth: 22,
+			        icons: [{
+			        	iconCls:'icon-search',
+			        	handler: function(e){
+			        		var v = $(e.data.target).textbox('getValue');
+			        		alert('The inputed value is ' + (v ? v : 'empty'));
+			        	}
+			        }]"
+			    /></td>
 			
 		</tr>
 		<tr>

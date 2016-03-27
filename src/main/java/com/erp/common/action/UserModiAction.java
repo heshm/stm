@@ -38,7 +38,7 @@ public class UserModiAction extends CmAction{
 			}
 		}
 		this.addActionMessage("用户信息修改成功!");
-		return null;
+		return SUCCESS;
 	}
 
 	public String getUserId() {

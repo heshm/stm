@@ -13,9 +13,15 @@ function deleteOneUser(userId){
 			window.location.href = addr;
 		}
 	});
-	//if(confirm("确定删除该用户?")){
-	//	window.location.href = addr;
-	//}
+}
+function updateOneUser(userId){
+	var url = "userModiInit.action?update=1&userId=" + userId;
+	location.href = url;
+
+}
+function addOneUser(){
+	var url = "userModiInit.action?update=0";
+	location.href = url;
 }
 </script>
 <body>

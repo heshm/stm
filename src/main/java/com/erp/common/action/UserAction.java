@@ -25,8 +25,8 @@ public class UserAction extends CmAction{
 	}
 	
 	public String changePass(){
-		System.out.println(oldpass);
-		System.out.println(newpass);
+		//System.out.println(oldpass);
+		//System.out.println(newpass);
 		Subject subject = SecurityUtils.getSubject();
 	    Session session = subject.getSession();
 	    
@@ -34,7 +34,7 @@ public class UserAction extends CmAction{
 	    try{
 	    	userService.changePass(user, oldpass, newpass);
 	    	subject.logout();
-	    	message = "密码修改成功!";
+	    	message = "密码修改成功,请重新登录!";
 	    }catch(RuntimeException e){
 	    	message = e.getMessage();
 	    }

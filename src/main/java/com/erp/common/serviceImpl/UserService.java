@@ -52,7 +52,7 @@ public class UserService implements IUserService {
 			user.setPassword(md5NewPass);
 			userDAO.updateOneUser(user);
 		}else{
-			throw new RuntimeException("旧密码输入错误!");
+			throw new RuntimeException("旧密码输入错误,请重新输入!");
 		}
 		return 0;
 	}
