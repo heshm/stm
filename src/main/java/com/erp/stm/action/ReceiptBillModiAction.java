@@ -49,14 +49,16 @@ public class ReceiptBillModiAction extends CmAction{
 		//System.out.println(receiptBillForm.toString());
 		
 		try{
-			//System.out.println("sssssss" + receiptBillForm.getReceipt().getWriteDate());
-		    Subject subject = SecurityUtils.getSubject();
-	        Session session = subject.getSession();
-	        String docketType = (String)session.getAttribute("docketType");
+			Session session = this.getSession();
 	        receiptBillForm.getReceipt().setType(docketType);
 	        User user = (User)session.getAttribute("user");
 	        receiptBillForm.getReceipt().setDepotId(Const.DEFAULT_DEPOT_ID);
+	        
+	        System.out.println("AAAAAAAAAAAAAAA");
+	        
 		    receiptBillService.updateOneReceiptBill(receiptBillForm, user);
+		    
+		    System.out.println("BBBBBBBBBBBBBB");
 		    this.addActionMessage("单据号为(" + receiptBillForm.getReceipt().getReceiptNo() + ")的单据修改成功!");
 		    Map<String,String> map = new HashMap<String,String>();
 			map.put("depotId", Const.DEFAULT_DEPOT_ID);
@@ -64,10 +66,7 @@ public class ReceiptBillModiAction extends CmAction{
 			receiptBillForm = receiptBillService.getOneReceiptBillForm(map);
 		}catch(RuntimeException e){
 			this.addActionError(e.getMessage());
-		}
-		//System.out.println("AAAAAAAAAAAAAA");
-		//System.out.println(receiptNo);
-		
+		}	
 		return SUCCESS;
 	}
 

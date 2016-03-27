@@ -46,8 +46,8 @@ public class DeliveryBillModiAction extends CmAction{
 		try{
 			Session session = this.getSession();
 	        User user = (User)session.getAttribute("user");
-	        String type = (String)session.getAttribute("docketType");
-	        deliveryBillForm.getDelivery().setType(type);
+	        //String type = (String)session.getAttribute("docketType");
+	        deliveryBillForm.getDelivery().setType(docketType);
 	        deliveryBillForm.getDelivery().setDepotId(Const.DEFAULT_DEPOT_ID);
 	        deliveryBillService.updateOneDeliveryBill(deliveryBillForm, user);
 	        

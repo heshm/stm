@@ -28,19 +28,6 @@ $(document).ready(function(){
     		}
     	}
 	});
-
-
-	$('.add').click(function(){
-		if(status!=1){
-			$("#addDetailModal").modal();
-		}	
-	});
-	
-	$("#addDetailModal").on("hidden", function() {
-	    $(this).find("input[type='text']").each(function(){
-	    	$(this).val('');
-	    });
-	});
 	
 	$("#checkAll").click(function(){
 		if(this.checked){
@@ -76,26 +63,7 @@ function tableResort($obj){
 		i++;
 	});
 }
-
-function setinfo(productType){
-	$("#guige").val(productType.norm);
-	$("#danwei").val(productType.unit);
-	$("#danjia").val(productType.refInPrice);
-	
-}
-function computeAmt(){
-	var danjia = $("#danjia").val();
-	var shuliang = $("#shuliang").val();
-	var jine = danjia * shuliang;
-	$("#jine").text(jine);
-}
-function computeTaxAmt(){
-	var danjia = $("#danjia").val();
-	var shuliang = $("#shuliang").val();
-	var shuilv = $("#shuilv").val();
-	var shuie = danjia * shuliang * shuilv / 100;
-	$("#shuie").text(shuie);
-}
+/**
 function addNewRow(){
 	var groupId=$("#selectGroupId").val();
 	var typeId=$("#groupType").val(); 
@@ -158,38 +126,4 @@ function addNewRow(){
     	 tableResort($("#data"));
     } 
 }
-function setkucun(inventory){
-	if (null == inventory){
-		quantity = 0;
-		quantity = quantity + $("#danwei").val();
-		$("#dqkc").text(quantity);
-	}else{
-		var quantity = inventory.inQuantity;
-		quantity = quantity - inventory.outQuantity;
-		quantity = quantity + $("#danwei").val();
-		$("#dqkc").text(quantity);
-	}
-	
-}
-
-function callBack(productTypeList){
-	if(productTypeList.length > 0){
-		$("#groupType").empty();
-		for(var i in productTypeList){
-		    var name = productTypeList[i].name;
-		    var typeId = productTypeList[i].typeId;
-		    var str = "<option value='" + typeId + "'>" + name + "</option>";
-		    $("#groupType").append(str);
-	    }
-		$("#guige").val(productTypeList[0].norm);
-		$("#danwei").val(productTypeList[0].unit);
-		$("#danjia").val(productTypeList[0].refOutPrice);
-		ajaxGetInventory();
-	}else{
-		$("#groupType").empty();
-		$("#guige").val('');
-		$("#danwei").val('');
-		$("#danjia").val('');
-		$("#dqkc").text('');
-	}
-}
+*/

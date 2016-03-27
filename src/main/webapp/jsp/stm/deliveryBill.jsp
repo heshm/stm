@@ -64,9 +64,9 @@ function unCheckOneDelivery(deliveryNo){
       <td width="23%"><s:textfield name="searchForm.deliveryNo"  class="span2" theme="simple"/></td>
       <td width="10%" align="right" nowrap="nowrap" bgcolor="#f1f1f1">开单时间：</td>
       <td width="43%">
-        <s:textfield name="searchForm.startDate" class="laydate-icon span1-1" id="Calendar1" theme="simple"/>
+        <s:textfield name="searchForm.startDate" class="easyui-datebox span1-1" theme="simple"/>
         <span>~</span>
-        <s:textfield name="searchForm.endDate" class="laydate-icon span1-1" id="Calendar2" theme="simple"/>
+        <s:textfield name="searchForm.endDate" class="easyui-datebox span1-1" theme="simple"/>
       </td>
       <td width="10%" align="right" nowrap="nowrap" bgcolor="#f1f1f1">审核状态：</td>
       <td>
