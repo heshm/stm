@@ -18,7 +18,7 @@
 	        <ul>
 		        <li data-options="iconCls:'icon-doc',attributes:{'url':'<%=request.getContextPath()%>/stm/receiptBillInit.action?docketType=1'}">采购入库</li>
 				<li data-options="iconCls:'icon-doc',attributes:{'url':'<%=request.getContextPath()%>/stm/receiptBillInit.action?docketType=2'}">生产入库</li>
-				<li data-options="iconCls:'icon-doc',attributes:{'url':'<%=request.getContextPath()%>/stm/receiptBillInit.action?docketType=0'}">未用退库</li>
+				<li data-options="iconCls:'icon-doc',attributes:{'url':'<%=request.getContextPath()%>/stm/receiptBillInit.action?docketType=0'}">其它入库</li>
 			</ul>
 		</li>
 		<li data-options="iconCls:'icon-folder'"><span>出库登记</span>
@@ -31,7 +31,7 @@
 </div>
 <div title="基础资料" style="padding: 0px;">
     <ul id="menuTree" class="easyui-tree menuTree" data-options="animate:true,lines:true">
-	    <li data-options="iconCls:'icon-doc',attributes:{'url':'../user.html'}">供应商管理</li>
+	    <li data-options="iconCls:'icon-doc',attributes:{'url':'<%=request.getContextPath()%>/common/supplierInit.action'}">往来单位管理</li>
 		<li data-options="iconCls:'icon-folder'"><span>货品管理</span>
 	        <ul>
 		        <li data-options="iconCls:'icon-doc',attributes:{'url':'<%=request.getContextPath()%>/common/productGroupInit.action'}">货品大类</li>

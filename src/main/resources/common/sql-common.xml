@@ -163,4 +163,56 @@
           AND TYPE_ID = #{typeId,jdbcType=CHAR}
     </delete>
     
+    <resultMap id="SupplierResult" type="Supplier" >
+        <id column="supplier_id" property="supplierId" jdbcType="CHAR" />
+        <result column="supplier_name" property="supplierName" jdbcType="VARCHAR" />
+        <result column="supplier_tel" property="supplierTel" jdbcType="CHAR" />
+        <result column="supplier_address" property="supplierAddress" jdbcType="VARCHAR" />
+        <result column="linkman" property="linkman" jdbcType="CHAR" />
+        <result column="linkman_tel" property="linkmanTel" jdbcType="CHAR" />
+    </resultMap>
+    
+    <sql id="SupplierCol" >
+        SUPPLIER_ID, SUPPLIER_NAME, SUPPLIER_TEL, SUPPLIER_ADDRESS, LINKMAN, LINKMAN_TEL
+    </sql>
+    
+    <select id="selectMulSupplier" resultMap="SupplierResult">
+        SELECT
+        <include refid="SupplierCol"/>
+        FROM TB_SUPPLIER
+    </select>
+    
+    <select id="selectOneSupplier" parameterType="java.lang.String" resultMap="SupplierResult">
+        SELECT
+        <include refid="SupplierCol"/>
+        FROM TB_SUPPLIER
+        WHERE SUPPLIER_ID = #{supplierId,jdbcType=CHAR}
+    </select>
+    
+    <insert id="insertOneSupplier" parameterType="Supplier" >
+        INSERT INTO TB_SUPPLIER (<include refid="SupplierCol"/>)
+        VALUES 
+           (#{supplierId,jdbcType=CHAR}, 
+            #{supplierName,jdbcType=VARCHAR}, 
+            #{supplierTel,jdbcType=CHAR}, 
+            #{supplierAddress,jdbcType=VARCHAR}, 
+            #{linkman,jdbcType=CHAR}, 
+            #{linkmanTel,jdbcType=CHAR}
+        )
+    </insert>
+    
+    <update id="updateOneSupplier" parameterType="Supplier" >
+        UPDATE TB_SUPPLIER
+        SET SUPPLIER_NAME = #{supplierName,jdbcType=VARCHAR},
+          SUPPLIER_TEL = #{supplierTel,jdbcType=CHAR},
+          SUPPLIER_ADDRESS = #{supplierAddress,jdbcType=VARCHAR},
+          LINKMAN = #{linkman,jdbcType=CHAR},
+          LINKMAN_TEL = #{linkmanTel,jdbcType=CHAR}
+        WHERE SUPPLIER_ID = #{supplierId,jdbcType=CHAR}
+    </update>
+    
+    <delete id="deleteOneSupplier" parameterType="java.lang.String" >
+        DELETE FROM TB_SUPPLIER
+        WHERE SUPPLIER_ID = #{supplierId,jdbcType=CHAR}
+    </delete>
 </mapper>

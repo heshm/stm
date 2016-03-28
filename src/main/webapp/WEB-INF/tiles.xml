@@ -40,6 +40,14 @@
         <put-attribute name="body" value="/jsp/common/productTypeModi.jsp"/>
     </definition>
     
+    <definition name="erp.common.supplier" extends="main.body">
+        <put-attribute name="body" value="/jsp/common/supplier.jsp"/>
+    </definition>
+    
+    <definition name="erp.common.supplierModi" extends="main.body">
+        <put-attribute name="body" value="/jsp/common/supplierModi.jsp"/>
+    </definition>
+    
     <!-- stm -->
     
     

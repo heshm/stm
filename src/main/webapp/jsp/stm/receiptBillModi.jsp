@@ -16,8 +16,10 @@ $(document).ready(function(){
 				href : '<%=request.getContextPath()%>/stm/productTypeLookUpInit.action',
 				modal: 'true',
 				buttons: [{
+					        id : 'addButton',
 							text:'添加',
 							iconCls:'icon-add',
+							
 							handler:function(){	
 								addNewInProduct();
 							}
@@ -34,62 +36,67 @@ $(document).ready(function(){
 });
 
 function addNewInProduct(){
-	if(top.$("#lookUpForm").form('enableValidation').form('validate')){
-		var exist = false;  //记录是否存在标志
-		
-		var groupId = top.$("#groupId").val();
-		var groupName = top.$("#groupName").text();
-		var typeId = top.$("#typeId").val();
-		var hpmc = top.$("#hpmc").text();
-		var ppmc = top.$("#ppmc").val();
-		var guige = top.$("#guige").val();
-		var danjia = top.$("#danjia").val();
-		var shuliang = top.$("#shuliang").val();
-		var taxRate = top.$("#taxRate").val();
-		var danwei = top.$("#danwei").val();
-		var code = groupId + typeId;
-		
-		var jine = danjia * shuliang;
-		jine = jine.toFixed(2);
-		
-		var shuie = danjia * shuliang * taxRate / 100;
-		shuie = shuie.toFixed(2);
-		
-		$("#data").find('tr').each(function(){
-			$td = $(this).children("td");
-			var text = $.trim($td.eq(2).text());
-			if(text == code){
-				var msg = "货品编码为(" + code + ")的记录已经存在!";
-				$main.messager.alert('系统提示',msg,'warning');
-				exist = true;
-				return;
-			}	
-		});
-		//alert(groupId);alert(groupName);alert(typeId);alert(hpmc);alert(ppmc);
-		//alert(guige);alert(danjia);alert(shuliang);alert(taxRate);
-		var newRow = "<tr>" +
-        "<td align='center'><input type='checkbox'></td>" +
-		"<td align='center'>1</td>" +
-		"<td align='center'>" + code +
-		"<input type='hidden' name='receiptBillForm.receiptDetail[0].commodityType' value='" + code + "'/>" +
-		"</td>" +
-		"<td align='center'>" + hpmc + "</td>" +
-		"<td align='center'>" + groupName + "</td>" +
-	    "<td align='center'><input type='text' name='receiptBillForm.receiptDetail[0].brand' value='" + ppmc + "' id='input6' class='span1 text-center'/></td>" +
-		"<td align='center'><input type='text' name='receiptBillForm.receiptDetail[0].norm' value='" + guige + "' id='input6' class='span1 text-center'/></td>" +
-		"<td align='center'><input type='text' name='receiptBillForm.receiptDetail[0].quantity' value='" + danjia + "' id='input8' class=' span1 text-center'/></td>" +
-		"<td align='center'>" + danwei + "</td>" +
-	    "<td align='center'><input type='text' name='receiptBillForm.receiptDetail[0].unitPrice' value='" + shuliang + "' id='input8' class=' span1 text-center'/></td>" +
-		"<td align='center'><input type='text' name='receiptBillForm.receiptDetail[0].amount' value='" + jine + "' id='input8' class=' span1-1 text-center'/></td>" +
-		"<td align='center'><input type='text' name='receiptBillForm.receiptDetail[0].taxRate' value='" + taxRate + "' id='input8' class=' span1 text-center'/>%</td>" +
-		"<td align='center'><input type='text' name='receiptBillForm.receiptDetail[0].taxAmt' value='" + shuie + "' id='input8' class=' span1-1 text-center'/></td>" +
-        "</tr>";
-        //alert(newRow);
-        if(!exist){
-        	 $("#data").append(newRow);
-        	 tableResort($("#data"));
-        }		
+	if(top.$("#lookUpForm").length > 0){
+		if(top.$("#lookUpForm").form('enableValidation').form('validate')){
+			var exist = false;  //记录是否存在标志
+			
+			var groupId = top.$("#groupId").val();
+			var groupName = top.$("#groupName").text();
+			var typeId = top.$("#typeId").val();
+			var hpmc = top.$("#hpmc").text();
+			var ppmc = top.$("#ppmc").val();
+			var guige = top.$("#guige").val();
+			var danjia = top.$("#danjia").val();
+			var shuliang = top.$("#shuliang").val();
+			var taxRate = top.$("#taxRate").val();
+			var danwei = top.$("#danwei").val();
+			var code = groupId + typeId;
+			
+			var jine = danjia * shuliang;
+			jine = jine.toFixed(2);
+			
+			var shuie = danjia * shuliang * taxRate / 100;
+			shuie = shuie.toFixed(2);
+			
+			$("#data").find('tr').each(function(){
+				$td = $(this).children("td");
+				var text = $.trim($td.eq(2).text());
+				if(text == code){
+					var msg = "货品编码为(" + code + ")的记录已经存在!";
+					$main.messager.alert('系统提示',msg,'warning');
+					exist = true;
+					return;
+				}	
+			});
+			//alert(groupId);alert(groupName);alert(typeId);alert(hpmc);alert(ppmc);
+			//alert(guige);alert(danjia);alert(shuliang);alert(taxRate);
+			var newRow = "<tr>" +
+	        "<td align='center'><input type='checkbox'></td>" +
+			"<td align='center'>1</td>" +
+			"<td align='center'>" + code +
+			"<input type='hidden' name='receiptBillForm.receiptDetail[0].commodityType' value='" + code + "'/>" +
+			"</td>" +
+			"<td align='center'>" + hpmc + "</td>" +
+			"<td align='center'>" + groupName + "</td>" +
+		    "<td align='center'><input type='text' name='receiptBillForm.receiptDetail[0].brand' value='" + ppmc + "' id='input6' class='span1 text-center'/></td>" +
+			"<td align='center'><input type='text' name='receiptBillForm.receiptDetail[0].norm' value='" + guige + "' id='input6' class='span1 text-center'/></td>" +
+			"<td align='center'><input type='text' name='receiptBillForm.receiptDetail[0].quantity' value='" + danjia + "' id='input8' class=' span1 text-center'/></td>" +
+			"<td align='center'>" + danwei + "</td>" +
+		    "<td align='center'><input type='text' name='receiptBillForm.receiptDetail[0].unitPrice' value='" + shuliang + "' id='input8' class=' span1 text-center'/></td>" +
+			"<td align='center'><input type='text' name='receiptBillForm.receiptDetail[0].amount' value='" + jine + "' id='input8' class=' span1-1 text-center'/></td>" +
+			"<td align='center'><input type='text' name='receiptBillForm.receiptDetail[0].taxRate' value='" + taxRate + "' id='input8' class=' span1 text-center'/>%</td>" +
+			"<td align='center'><input type='text' name='receiptBillForm.receiptDetail[0].taxAmt' value='" + shuie + "' id='input8' class=' span1-1 text-center'/></td>" +
+	        "</tr>";
+	        //alert(newRow);
+	        if(!exist){
+	        	 $("#data").append(newRow);
+	        	 tableResort($("#data"));
+	        }		
+		}
+	}else{
+		$main.messager.alert('系统警告','请选择一个货品!','warning');
 	}
+	
 }
 function receiptBillUpdate(){
 	$main.messager.confirm('系统提示', '输入无误,确认提交?', function(r){
@@ -102,13 +109,14 @@ function getBack(){
 	var docketType = $("#docketType").val();
 	location.href = "receiptBillInit.action?docketType=" + docketType;
 }
+
 </script>
 </head>
 
 <body>
 <div class="title_right">
-    <s:if test="%{docketType==1}">
-        <strong>未用退库单填写</strong>
+    <s:if test="%{docketType==0}">
+        <strong>其它入库单填写</strong>
     </s:if>
     <s:if test="%{docketType==1}">
         <strong>采购入库单填写</strong>
@@ -157,7 +165,9 @@ function getBack(){
 			        	iconCls:'icon-search',
 			        	handler: function(e){
 			        		var v = $(e.data.target).textbox('getValue');
-			        		alert('The inputed value is ' + (v ? v : 'empty'));
+			        		var $obj = $(e.data.target);
+			        		LookUp($obj,'selectSupplierList');
+			        		//alert('The inputed value is ' + (v ? v : 'empty'));
 			        	}
 			        }]"
 			    /></td>

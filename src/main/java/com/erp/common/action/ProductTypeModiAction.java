@@ -43,7 +43,6 @@ public class ProductTypeModiAction extends CmAction{
 	}
 	
 	public String insert(){
-		System.out.println("KKKKKKKKKKKKKKKKKKK");
 		if(productTypeService.addOneProductType(productType) == Const.SUCCESS){
 			this.addActionMessage("数据新增成功!");
 		}else{

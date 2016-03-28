@@ -35,6 +35,14 @@
 	<bean id="productTypeService" class="com.erp.common.serviceImpl.ProductTypeService">
 		<property name="productTypeDAO" ref="productTypeDAO" />
 	</bean>
+	
+	<bean id="supplierDAO" class="com.erp.common.DAOImpl.SupplierDAO">
+		<property name="sqlSession" ref="sqlSession" />
+	</bean>
+
+	<bean id="supplierService" class="com.erp.common.serviceImpl.SupplierService">
+		<property name="supplierDAO" ref="supplierDAO" />
+	</bean>
 
 
 </beans>

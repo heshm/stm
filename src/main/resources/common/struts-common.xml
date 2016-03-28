@@ -80,6 +80,29 @@
 		    <result name="success" type="tiles">erp.common.productTypeModi</result>
 		</action>
 		
+		<action name="supplierInit" class="com.erp.common.action.SupplierAction" method="init">
+		    <result name="success" type="tiles">erp.common.supplier</result>
+		</action>
+		
+		<action name="supplierModiInit" class="com.erp.common.action.SupplierModiAction" method="init">
+		    <result name="success" type="tiles">erp.common.supplierModi</result>
+		</action>
+		
+		<action name="supplierAdd" class="com.erp.common.action.SupplierModiAction" method="add">
+		    <result name="success" type="tiles">erp.common.supplierModi</result>
+		</action>
+		
+		<action name="supplierUpdate" class="com.erp.common.action.SupplierModiAction" method="update">
+		    <result name="success" type="tiles">erp.common.supplierModi</result>
+		</action>
+		
+		<action name="supplierDelete" class="com.erp.common.action.SupplierModiAction" method="delete">
+		    <result name="success" type="redirectAction">
+				<param name="namespace">/common</param>
+				<param name="actionName">supplierInit</param>
+			</result>
+		</action>
+		<!--  
 		<action name="ajaxGetProductTypeList" class="com.erp.common.action.StaticModal" method="ajaxGetProductTypeList">
 		    <result type="json">
 		        <param name="root">productTypeList</param>
@@ -96,6 +119,8 @@
 		        <param name="root">inventory</param>
 		    </result>
 		</action>
+		
+		-->
 		
 	</package>
 </struts>

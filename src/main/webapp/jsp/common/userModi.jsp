@@ -32,7 +32,6 @@ function userFormSubmit(){
 				<s:else>
 				<td width="50%"><s:textfield name="user.userId" class="span2" data-options="required:true"/></td>
 				</s:else>
-
 			</tr>
 			<tr>
 				<td width="50%" align="right" nowrap="nowrap" bgcolor="#f1f1f1">姓名：</td>

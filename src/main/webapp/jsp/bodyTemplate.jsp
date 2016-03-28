@@ -13,7 +13,6 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-2.2.2.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/easyui-lang-zh_CN.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/laydate/laydate.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/common.js"></script>
 
 </head>
