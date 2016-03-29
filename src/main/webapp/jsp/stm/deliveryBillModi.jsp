@@ -115,6 +115,9 @@ function deliveryBillUpdate(){
 	<s:if test="%{docketType==4}">
        <strong>领用退库单填写</strong>
     </s:if>
+    <s:if test="%{docketType==5}">
+       <strong>其它出库单填写</strong>
+    </s:if>
 </div>
 <div style="width: 900px; margin: auto;">
     <s:form name="deliveryBillForm" method="post" action="deliveryBillModi" namespace="/stm" theme="simple">
@@ -142,9 +145,21 @@ function deliveryBillUpdate(){
 		</tr>
 		<tr>
 			<td align="right" nowrap="nowrap" bgcolor="#f1f1f1">供应商：</td>
-			<td><s:textfield name="deliveryBillForm.delivery.supplier" class="span4"/></td>
+			<td><s:textfield name="deliveryBillForm.delivery.supplier" class="span3"/></td>
 			<td align="right" nowrap="nowrap" bgcolor="#f1f1f1">用途：</td>
-			<td><s:textfield name="deliveryBillForm.delivery.useFor" class="span4"/></td>
+			<td><s:textfield name="deliveryBillForm.delivery.useFor" class="span3 easyui-textbox"
+			    data-options="
+			        prompt: '输入或者选择供应商',
+			        iconWidth: 22,
+			        icons: [{
+			        	iconCls:'icon-search',
+			        	handler: function(e){
+			        		var v = $(e.data.target).textbox('getValue');
+			        		var $obj = $(e.data.target);
+			        		SimpleLookUp($obj,'supplier');
+			        	}
+			        }]"
+			    /></td>
 			
 		</tr>
 		<tr>

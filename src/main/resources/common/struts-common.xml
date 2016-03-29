@@ -3,7 +3,7 @@
 	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
-	<package name="common" namespace="/common" extends="tiles-default,json-default">
+	<package name="common" namespace="/common" extends="default,tiles-default,json-default">
 	   
 	    <action name="passChange" class="com.erp.common.action.UserAction" method="changePass">
 			<result type="json">
@@ -101,6 +101,9 @@
 				<param name="namespace">/common</param>
 				<param name="actionName">supplierInit</param>
 			</result>
+		</action>
+		<action name="SimpleLookUpInit" class="com.erp.common.action.LookUpAction" method="lookUpSimple">
+		    <result name="success">/jsp/common/lookUpDataSetSimple.jsp</result>
 		</action>
 		<!--  
 		<action name="ajaxGetProductTypeList" class="com.erp.common.action.StaticModal" method="ajaxGetProductTypeList">

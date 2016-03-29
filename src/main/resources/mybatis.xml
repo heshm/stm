@@ -11,6 +11,7 @@
 	<mappers>
 	    <mapper resource="common/sql-page.xml" />
 		<mapper resource="common/sql-common.xml" />
+		<mapper resource="common/sql-lookUp.xml" />
 		<mapper resource="stm/sql-stm.xml" />
 		<mapper resource="report/sql-report.xml" />
 	</mappers>

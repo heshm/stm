@@ -7,11 +7,13 @@ $(document).ready(function() {
 
 });
 function userFormSubmit(){
-	$main.messager.confirm('系统提示', '确认输入无误?', function(r){
-		if (r){
-			document.userForm.submit();
-		}
-	});
+	if($("#userForm").form('enableValidation').form('validate')){
+		$main.messager.confirm('系统提示', '确认输入无误?', function(r){
+			if (r){
+				document.userForm.submit();
+			}
+		});
+	}
 }
 </script>
 <body>
@@ -30,22 +32,22 @@ function userFormSubmit(){
 				</td>
 				</s:if>
 				<s:else>
-				<td width="50%"><s:textfield name="user.userId" class="span2" data-options="required:true"/></td>
+				<td width="50%"><s:textfield name="user.userId" class="span2 easyui-textbox" data-options="required:true"/></td>
 				</s:else>
 			</tr>
 			<tr>
 				<td width="50%" align="right" nowrap="nowrap" bgcolor="#f1f1f1">姓名：</td>
-				<td width="50%"><s:textfield name="user.userName" class="span2" data-options="required:true" /></td>
+				<td width="50%"><s:textfield name="user.userName" class="span2 easyui-textbox" data-options="required:true" /></td>
 
 			</tr>
 			<tr>
 				<td align="right" nowrap="nowrap" bgcolor="#f1f1f1">电子邮箱：</td>
-				<td><s:textfield name="user.email" class="span2 form-control"/></td>
+				<td><s:textfield name="user.email" class="span2 easyui-validatebox" data-options="validType:'email'"/></td>
 
 			</tr>
 			<tr>
 				<td align="right" nowrap="nowrap" bgcolor="#f1f1f1">手机：</td>
-				<td colspan="3"><s:textfield name="user.telNo" class="span2" data-options="required:true"/></td>
+				<td colspan="3"><s:textfield name="user.telNo" class="span2 easyui-textbox" data-options="required:true,validType:'length[11,14]'"/></td>
 			</tr>
 		</table>
 		<s:hidden name="user.role"/>

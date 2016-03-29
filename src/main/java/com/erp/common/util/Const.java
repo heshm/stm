@@ -17,6 +17,7 @@ public class Const {
 	//出库单据类型
 	public static final String DOCKET_TYPE_3 = "3";     //采购退货
 	public static final String DOCKET_TYPE_4 = "4";     //领用退库
+	public static final String DOCKET_TYPE_5 = "5";     //其它出库
 	
 	//单据状态
 	public static final String BILL_UNCONFIRM = "0";  //未审核
@@ -42,5 +43,6 @@ public class Const {
 	public static final int BILL_LENGTH = 14;
 	
 	public static final String DEFAULT_PASS_WORD = "Aa0123";
+	
 
 }

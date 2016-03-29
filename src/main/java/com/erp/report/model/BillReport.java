@@ -47,6 +47,9 @@ public class BillReport {
 		if (Const.DOCKET_TYPE_4.equals(type)){
 			this.type = "领用退库";
 		}
+		if (Const.DOCKET_TYPE_5.equals(type)){
+			this.type = "其它出库";
+		}
 	}
 	public String getStatus() {
 		return status;

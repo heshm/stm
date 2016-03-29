@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lookUp">
+    <resultMap id="LookUpResult" type="com.erp.common.model.form.SimpleLookUpDataSet">
+        <result column="DATA_KEY" jdbcType="CHAR" property="dataKey" />
+        <result column="DATA_VALUE" jdbcType="VARCHAR" property="dataValue" />
+    </resultMap>
+    
+    <select id="SELECT_SUPPLIER_LIST" resultMap="LookUpResult">
+        SELECT SUPPLIER_ID AS DATA_KEY,SUPPLIER_NAME AS DATA_VALUE FROM TB_SUPPLIER
+    </select>
+</mapper>

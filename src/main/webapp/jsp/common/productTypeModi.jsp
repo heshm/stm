@@ -67,13 +67,13 @@ function productTypeModiFormSubmit(){
       <td align="right" bgcolor="#f1f1f1">单位:</td>
       <td align="left"><s:textfield name="productType.unit" cssClass="easyui-textbox" data-options="required:true" cssStyle="width:60px" maxlength="6"/>[*]</td>
       <td align="right" bgcolor="#f1f1f1">计量小数位数:</td>
-      <td align="left" colspan="3"><s:textfield name="productType.decNo" cssStyle="width:50px" maxlength="5"/>[*]</td>
+      <td align="left" colspan="3"><s:textfield name="productType.decNo" cssClass="easyui-numberbox" cssStyle="width:50px" data-options="min:0,required:true"/>[*]</td>
     </tr>
     <tr>
       <td align="right" bgcolor="#f1f1f1">参考入库单价:</td>
-      <td align="left"><s:textfield name="productType.refInPrice" class="span2 easyui-numberbox" precision="2" data-options="required:true" maxlength="10"/></td>
+      <td align="left"><s:textfield name="productType.refInPrice" class="span2 easyui-numberbox" precision="2" data-options="min:0,required:true" maxlength="10"/></td>
       <td align="right" bgcolor="#f1f1f1">参考出库单价:</td>
-      <td align="left" colspan="3"><s:textfield name="productType.refOutPrice" class="span2 easyui-numberbox" precision="2" data-options="required:true" maxlength="10"/></td>
+      <td align="left" colspan="3"><s:textfield name="productType.refOutPrice" class="span2 easyui-numberbox" precision="2" data-options="min:0,required:true" maxlength="10"/></td>
     </tr>
     <tr>
       <td align="right" bgcolor="#f1f1f1">备注:</td>

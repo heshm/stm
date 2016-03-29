@@ -3,6 +3,8 @@ package com.erp.common.action;
 import java.util.List;
 
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 
@@ -18,7 +20,7 @@ public class UserAction extends CmAction{
 	private IUserService userService;
 	private List<User> userList;
 	
-	
+	@RequiresRoles(value={"sysadmin"}, logical= Logical.OR)
 	public String init(){
 		userList = userService.getUserList();
 		return SUCCESS;

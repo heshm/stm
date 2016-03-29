@@ -54,6 +54,10 @@ function unCheckOneDelivery(deliveryNo){
     <span class="pull-right margin-bottom-5"><a class="btn btn-info btn-small" href="deliveryBillModiInit.action?update=0&docketType=4" role="button"><i class="icon-plus icon-white"></i>新建领用退库单</a></span>
     <strong>领用退库单查询</strong>
   </s:if>
+  <s:if test="%{docketType==5}">
+    <span class="pull-right margin-bottom-5"><a class="btn btn-info btn-small" href="deliveryBillModiInit.action?update=0&docketType=5" role="button"><i class="icon-plus icon-white"></i>新建其它出库单</a></span>
+    <strong>其它出库单查询</strong>
+  </s:if>
 </div>  
 <div style="width:900px; margin:auto;">
   <s:form name="queryForm" method="post" action="deliveryBillQuery" namespace="/stm" theme="simple">

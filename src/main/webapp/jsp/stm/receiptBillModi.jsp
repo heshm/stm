@@ -16,7 +16,6 @@ $(document).ready(function(){
 				href : '<%=request.getContextPath()%>/stm/productTypeLookUpInit.action',
 				modal: 'true',
 				buttons: [{
-					        id : 'addButton',
 							text:'添加',
 							iconCls:'icon-add',
 							
@@ -157,7 +156,7 @@ function getBack(){
 			<td align="right" nowrap="nowrap" bgcolor="#f1f1f1">审核状态：</td>
 			<td><s:select id="status" name="receiptBillForm.receipt.status" list="#{'0':'未审核','1':'已审核'}" class="span1-1" theme="simple"/></td>
 			<td align="right" nowrap="nowrap" bgcolor="#f1f1f1">供应商/部门：</td>
-			<td><s:textfield name="receiptBillForm.receipt.supplier" class="span4 easyui-textbox" 
+			<td><s:textfield name="receiptBillForm.receipt.supplier" class="span3 easyui-textbox" 
 			    data-options="
 			        prompt: '输入或者选择供应商',
 			        iconWidth: 22,
@@ -166,8 +165,7 @@ function getBack(){
 			        	handler: function(e){
 			        		var v = $(e.data.target).textbox('getValue');
 			        		var $obj = $(e.data.target);
-			        		LookUp($obj,'selectSupplierList');
-			        		//alert('The inputed value is ' + (v ? v : 'empty'));
+			        		SimpleLookUp($obj,'supplier');
 			        	}
 			        }]"
 			    /></td>

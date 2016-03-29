@@ -25,6 +25,7 @@
 	        <ul>
 		        <li data-options="iconCls:'icon-doc',attributes:{'url':'<%=request.getContextPath()%>/stm/deliveryBillInit.action?docketType=3'}">采购退货</li>
 				<li data-options="iconCls:'icon-doc',attributes:{'url':'<%=request.getContextPath()%>/stm/deliveryBillInit.action?docketType=4'}">领用退库</li>
+				<li data-options="iconCls:'icon-doc',attributes:{'url':'<%=request.getContextPath()%>/stm/deliveryBillInit.action?docketType=5'}">其它出库</li>
 			</ul>
 		</li>
 	</ul>

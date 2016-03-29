@@ -43,6 +43,14 @@
 	<bean id="supplierService" class="com.erp.common.serviceImpl.SupplierService">
 		<property name="supplierDAO" ref="supplierDAO" />
 	</bean>
+	
+	<bean id="lookUpDAO" class="com.erp.common.DAOImpl.LookUpDAO">
+		<property name="sqlSession" ref="sqlSession" />
+	</bean>
+
+	<bean id="lookUpService" class="com.erp.common.serviceImpl.LookUpService">
+		<property name="lookUpDAO" ref="lookUpDAO" />
+	</bean>
 
 
 </beans>

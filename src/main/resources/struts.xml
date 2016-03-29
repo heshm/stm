@@ -8,8 +8,19 @@
 	<constant name="struts.i18n.encoding" value="UTF-8" />
 	<constant name="struts.devMode" value="true" />
 	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	
+	<package name="default" extends="struts-default" abstract="true">
+	    <global-results>
+		    <result name="unauthorized">/jsp/error/unauthorized.jsp</result>
+	    </global-results>
 
-	<package name="init" namespace="/" extends="struts-default">
+	    <global-exception-mappings>
+		    <exception-mapping result="unauthorized" exception="org.apache.shiro.authz.UnauthorizedException" />
+	    </global-exception-mappings>
+	</package>
+
+	<package name="init" namespace="/" extends="default">
+	    
 		<action name="init" class="com.erp.common.action.InitAction">
 			<result name="success">/jsp/login.jsp</result>
 		</action>
@@ -21,6 +32,7 @@
 			</result>
 			<result name="input">/jsp/login.jsp</result>
 		</action>
+		
 	</package>
 	
 	<include file="common/struts-common.xml" />

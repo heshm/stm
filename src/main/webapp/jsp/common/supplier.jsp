@@ -15,7 +15,7 @@ function addOneSupplier(){
 	location.href = htmlAddr;
 }
 function deleteOneSupplier(supplierId){
-	$main.messager.confirm('系统提示', '确认干掉这条数据?', function(r){
+	$main.messager.confirm('系统提示', '你确认删除这条数据?', function(r){
 		if (r){
 			var htmlAddr = "supplierDelete.action?supplierId=" + supplierId;
 			location.href = htmlAddr;
