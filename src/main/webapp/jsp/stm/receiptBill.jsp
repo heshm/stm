@@ -79,8 +79,7 @@ function unCheckOneReceipt(billNo){
     <tr>
       <td width="10%" align="right" nowrap="nowrap" bgcolor="#f1f1f1">单据号码：</td>
       <td width="23%">
-        <s:textfield name="searchForm.receiptNo" class="span2 easyui-validatebox" 
-        data-options="validType:'length[14,14]'" theme="simple"/>
+        <s:textfield name="searchForm.receiptNo" class="span2" theme="simple"/>
       </td>
       <td width="10%" align="right" nowrap="nowrap" bgcolor="#f1f1f1">开单时间：<s:property value="%docketType"/></td>
       <td width="43%">

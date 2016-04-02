@@ -20,7 +20,7 @@ public class UserAction extends CmAction{
 	private IUserService userService;
 	private List<User> userList;
 	
-	@RequiresRoles(value={"sysadmin"}, logical= Logical.OR)
+	
 	public String init(){
 		userList = userService.getUserList();
 		return SUCCESS;

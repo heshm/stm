@@ -2,6 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <head>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/vendor/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.iframe-transport.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.fileupload.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/stm/receiptBillModi.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -32,81 +35,54 @@ $(document).ready(function(){
 			});
 		}
 	});
-});
-
-function addNewInProduct(){
-	if(top.$("#lookUpForm").length > 0){
-		if(top.$("#lookUpForm").form('enableValidation').form('validate')){
-			var exist = false;  //记录是否存在标志
-			
-			var groupId = top.$("#groupId").val();
-			var groupName = top.$("#groupName").text();
-			var typeId = top.$("#typeId").val();
-			var hpmc = top.$("#hpmc").text();
-			var ppmc = top.$("#ppmc").val();
-			var guige = top.$("#guige").val();
-			var danjia = top.$("#danjia").val();
-			var shuliang = top.$("#shuliang").val();
-			var taxRate = top.$("#taxRate").val();
-			var danwei = top.$("#danwei").val();
-			var code = groupId + typeId;
-			
-			var jine = danjia * shuliang;
-			jine = jine.toFixed(2);
-			
-			var shuie = danjia * shuliang * taxRate / 100;
-			shuie = shuie.toFixed(2);
-			
-			$("#data").find('tr').each(function(){
-				$td = $(this).children("td");
-				var text = $.trim($td.eq(2).text());
-				if(text == code){
-					var msg = "货品编码为(" + code + ")的记录已经存在!";
-					$main.messager.alert('系统提示',msg,'warning');
-					exist = true;
-					return;
-				}	
-			});
-			//alert(groupId);alert(groupName);alert(typeId);alert(hpmc);alert(ppmc);
-			//alert(guige);alert(danjia);alert(shuliang);alert(taxRate);
-			var newRow = "<tr>" +
-	        "<td align='center'><input type='checkbox'></td>" +
-			"<td align='center'>1</td>" +
-			"<td align='center'>" + code +
-			"<input type='hidden' name='receiptBillForm.receiptDetail[0].commodityType' value='" + code + "'/>" +
-			"</td>" +
-			"<td align='center'>" + hpmc + "</td>" +
-			"<td align='center'>" + groupName + "</td>" +
-		    "<td align='center'><input type='text' name='receiptBillForm.receiptDetail[0].brand' value='" + ppmc + "' id='input6' class='span1 text-center'/></td>" +
-			"<td align='center'><input type='text' name='receiptBillForm.receiptDetail[0].norm' value='" + guige + "' id='input6' class='span1 text-center'/></td>" +
-			"<td align='center'><input type='text' name='receiptBillForm.receiptDetail[0].quantity' value='" + danjia + "' id='input8' class=' span1 text-center'/></td>" +
-			"<td align='center'>" + danwei + "</td>" +
-		    "<td align='center'><input type='text' name='receiptBillForm.receiptDetail[0].unitPrice' value='" + shuliang + "' id='input8' class=' span1 text-center'/></td>" +
-			"<td align='center'><input type='text' name='receiptBillForm.receiptDetail[0].amount' value='" + jine + "' id='input8' class=' span1-1 text-center'/></td>" +
-			"<td align='center'><input type='text' name='receiptBillForm.receiptDetail[0].taxRate' value='" + taxRate + "' id='input8' class=' span1 text-center'/>%</td>" +
-			"<td align='center'><input type='text' name='receiptBillForm.receiptDetail[0].taxAmt' value='" + shuie + "' id='input8' class=' span1-1 text-center'/></td>" +
-	        "</tr>";
-	        //alert(newRow);
-	        if(!exist){
-	        	 $("#data").append(newRow);
-	        	 tableResort($("#data"));
-	        }		
-		}
-	}else{
-		$main.messager.alert('系统警告','请选择一个货品!','warning');
-	}
 	
+	$("input[type='file']").fileupload({
+		url : 'receiptBillUpload.action',
+        dataType: 'json',
+        add: function (e, data) {
+            data.context = $('#upload')
+                .click(function () {
+                    $(this).replaceWith($("<span/>").text('上传中...'));
+                    data.submit();
+                });
+        },
+        done: function (e, data) {
+        	var status = data.result;
+        	if(status == 1){
+        		$('.uploadTd').html("<a id='upload' class='btn btn-mini btn-primary'>继续上传</a>");
+        	}
+        	//alert(data.context);
+            //data.context.text('Upload finished.');
+        }
+    });
+	
+});
+function showBillImage(receiptNo){
+	var url = "<%=request.getContextPath()%>/stm/receiptBillImageShow.action?receiptNo=" + receiptNo;
+    window.open(
+        url, 
+       'newwindow', 
+       'height=500px, width=900px, top=100,left=200,location=no ,scrollbars=yes, resizable=yes');
 }
-function receiptBillUpdate(){
-	$main.messager.confirm('系统提示', '输入无误,确认提交?', function(r){
+function clearBillImage(receiptNo){
+	var url = "<%=request.getContextPath()%>/stm/receiptBillImageDelete.action";
+	$main.messager.confirm('系统提示', '此操作会删除所有已上传文件,确认继续?', function(r){
 		if (r){
-			document.receiptBillForm.submit();
+			$.ajax({
+				cache:false,   
+		        url : url,   
+		        type:'post',   
+		        dataType:'json',   
+		        data:{receiptNo:receiptNo},   
+		        success:function(status){
+		        	if(status == 1){
+		        		$main.messager.alert('系统提示','文件删除成功!','info');
+		        	}
+		        }
+			});
 		}
 	});
-}
-function getBack(){
-	var docketType = $("#docketType").val();
-	location.href = "receiptBillInit.action?docketType=" + docketType;
+	
 }
 
 </script>
@@ -146,10 +122,10 @@ function getBack(){
 		<tr>
 		    <td width="15%" align="right" nowrap="nowrap" bgcolor="#f1f1f1">入库人：</td>
 			<td width="35%">
-			  <s:textfield name="receiptBillForm.receipt.registrant" class="span1-1" />
+			  <s:textfield name="receiptBillForm.receipt.registrant" class="span1-1 easyui-textbox" data-options="required:true"/>
 			</td>
 			<td align="right" nowrap="nowrap" bgcolor="#f1f1f1">入库日期：</td>
-			<td><s:textfield name="receiptBillForm.receipt.enterDate" class="span1-1 easyui-datebox"/></td>
+			<td><s:textfield name="receiptBillForm.receipt.enterDate" class="span1-1 easyui-datebox" data-options="required:true"/></td>
 			
 		</tr>
 		<tr>
@@ -186,8 +162,13 @@ function getBack(){
 		   
 		    <a class="btn btn-mini btn-danger del">删除</a>
 		  </td>
-		  <td>
-		    <a class="btn btn-mini btn-primary">发票扫描件上传</a>
+		  <td class="uploadTd"> 
+		    <a id="upload" class="btn btn-mini btn-primary">上传</a>
+		  </td>
+		  <td colspan="9">    
+		    <input id="imageUpload" class="easyui-filebox span4" name="upload" data-options="prompt:'发票扫描件上传',buttonAlign:'left',buttonText:'选择图片'"/>
+		    <a href="#" onclick="clearBillImage('<s:property value="%{receiptNo}"/>')" class="btn btn-mini btn-danger">清空</a>&nbsp;&nbsp;
+		    <a href="javascript:showBillImage('<s:property value="%{receiptNo}"/>');">发票扫描件查看</a> 
 		  </td>
 		</tr>
 		<tr>

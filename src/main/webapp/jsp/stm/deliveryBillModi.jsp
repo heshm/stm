@@ -94,14 +94,19 @@ function addNewOutProduct(){
 }
 
 function deliveryBillUpdate(){
-	//alert($("#data").html());
-	document.deliveryBillForm.submit();
-	if ($("input[name='print']").is(':checked')){
-		var htmlAddr = "deliveryBillModi.action?print=1";
-		document.deliveryBillForm.action=htmlAddr;
-		document.deliveryBillForm.submit();
-	}else{
-		document.deliveryBillForm.submit();
+	if($("#deliveryBillForm").form('enableValidation').form('validate')){
+		$main.messager.confirm('系统提示', '输入无误,确认提交?', function(r){
+			if (r){
+				//document.deliveryBillForm.submit();
+				if ($("input[name='print']").is(':checked')){
+					var htmlAddr = "deliveryBillModi.action?print=1";
+					document.deliveryBillForm.action=htmlAddr;
+					document.deliveryBillForm.submit();
+				}else{
+					document.deliveryBillForm.submit();
+				}
+			}
+		});
 	}
 }
 
@@ -120,7 +125,7 @@ function deliveryBillUpdate(){
     </s:if>
 </div>
 <div style="width: 900px; margin: auto;">
-    <s:form name="deliveryBillForm" method="post" action="deliveryBillModi" namespace="/stm" theme="simple">
+    <s:form id="deliveryBillForm" name="deliveryBillForm" method="post" action="deliveryBillModi" namespace="/stm" theme="simple">
 	<s:hidden name="update"/>
 	<s:hidden name="deliveryNo"/>
 	<s:hidden id="docketType" name="docketType"/>
@@ -138,16 +143,14 @@ function deliveryBillUpdate(){
 		</tr>
 		<tr>
 			<td align="right" nowrap="nowrap" bgcolor="#f1f1f1">领用人：</td>
-			<td><s:textfield name="deliveryBillForm.delivery.consumer" class="span1-1" /></td>
+			<td><s:textfield name="deliveryBillForm.delivery.consumer" class="span1-1 easyui-textbox" data-options="required:true" /></td>
 			<td align="right" nowrap="nowrap" bgcolor="#f1f1f1">出库日期：</td>
-			<td><s:textfield name="deliveryBillForm.delivery.outDate" class="laydate-icon span1-1" id="Calendar2" /></td>
+			<td><s:textfield name="deliveryBillForm.delivery.outDate" class="easyui-datebox span1-1"  data-options="required:true"/></td>
 			
 		</tr>
 		<tr>
 			<td align="right" nowrap="nowrap" bgcolor="#f1f1f1">供应商：</td>
-			<td><s:textfield name="deliveryBillForm.delivery.supplier" class="span3"/></td>
-			<td align="right" nowrap="nowrap" bgcolor="#f1f1f1">用途：</td>
-			<td><s:textfield name="deliveryBillForm.delivery.useFor" class="span3 easyui-textbox"
+			<td><s:textfield name="deliveryBillForm.delivery.supplier" class="span3 easyui-textbox"
 			    data-options="
 			        prompt: '输入或者选择供应商',
 			        iconWidth: 22,
@@ -158,8 +161,9 @@ function deliveryBillUpdate(){
 			        		var $obj = $(e.data.target);
 			        		SimpleLookUp($obj,'supplier');
 			        	}
-			        }]"
-			    /></td>
+			        }]"/></td>
+			<td align="right" nowrap="nowrap" bgcolor="#f1f1f1">用途：</td>
+			<td><s:textfield name="deliveryBillForm.delivery.useFor" class="span3 easyui-textbox" data-options="required:true"/></td>
 			
 		</tr>
 		<tr>

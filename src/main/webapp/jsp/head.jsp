@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="s"  uri="/struts-tags"%>
 <script type="text/javascript">
 function logout(){
 	$.messager.confirm('注销系统', '你确定要注销退出系统吗?', function(r){
@@ -46,7 +47,8 @@ function showMessage(msg){
  
 </div>
 <div class="header-right">
-    <i class="icon-user icon-white"></i> <a href="#" onclick="changePassword()">修改密码</a> 
+    <i class="icon-user icon-white"></i><span>欢迎你！<s:property value="%{#session.user.userName}" /></span>
+    <i class="icon-lock icon-white"></i><a href="#" onclick="changePassword()">修改密码</a> 
 	<i class="icon-off icon-white"></i> <a href="#" onclick="logout();">注销</a>
 </div>
 <div id="passWordDlg" class="easyui-dialog" title="密码修改" 

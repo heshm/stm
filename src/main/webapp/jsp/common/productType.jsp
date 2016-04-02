@@ -61,8 +61,8 @@ function deleteOneProductType(commodityType){
         <td nowrap="nowrap"><strong>货品规格</strong></td>
         <td nowrap="nowrap"><strong>货品类别</strong></td>
         <td nowrap="nowrap"><strong>单位</strong></td>
-        <td nowrap="nowrap"><strong>入库价</strong></td>
-        <td nowrap="nowrap"><strong>出库价</strong></td>
+        <td nowrap="nowrap"><strong>参考入库价</strong></td>
+        <td nowrap="nowrap"><strong>参考出库价</strong></td>
         <td nowrap="nowrap"><strong>小数位数</strong></td>
         <td nowrap="nowrap"><strong>备注</strong></td>
         <td width="80" nowrap="nowrap"><strong> 操作 </strong></td>

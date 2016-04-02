@@ -30,9 +30,9 @@ function supplierFormSubmit(){
   <s:form id="supplierForm" name="supplierForm" method="post" action="supplierAction" namespace="/common" theme="simple">
   <s:hidden id="update" name="update" />
   <table class="table table-bordered">
-    <tr>
+    <tr title="提示:输入格式(DW+3位数字)<br>如DW001" class="easyui-tooltip">
       <td width="30%" align="right" nowrap="nowrap" bgcolor="#f1f1f1">供应商ID：</td>
-      <td width="70%"><s:textfield name="supplier.supplierId" class="span1 easyui-textbox" data-options="required:true"/></td>
+      <td width="70%"><s:textfield name="supplier.supplierId" class="span1 easyui-textbox" data-options="required:true,validType:'supplierId'"/></td>
     </tr>
     <tr>
       <td width="30%" align="right" nowrap="nowrap" bgcolor="#f1f1f1">供应商名称：</td>
@@ -40,20 +40,20 @@ function supplierFormSubmit(){
     </tr>
     <tr>
       <td width="30%" align="right" nowrap="nowrap" bgcolor="#f1f1f1">供应商电话：</td>
-      <td width="70%"><s:textfield name="supplier.supplierTel" class="span2" data-options="required:true"/></td>
+      <td width="70%"><s:textfield name="supplier.supplierTel" class="span2 easyui-textbox" data-options="validType:'mobileAndTel'"/></td>
     </tr>
     <tr>
       <td width="30%" align="right" nowrap="nowrap" bgcolor="#f1f1f1">供应商地址：</td>
-      <td width="70%"><s:textfield name="supplier.supplierAddress" class="span5" data-options="required:true"/></td>
+      <td width="70%"><s:textfield name="supplier.supplierAddress" class="span5"/></td>
     </tr>
     <tr>
       <td width="30%" align="right" nowrap="nowrap" bgcolor="#f1f1f1">联系人：</td>
-      <td width="70%"><s:textfield name="supplier.linkman" class="span1-1" data-options="required:true"/></td>
+      <td width="70%"><s:textfield name="supplier.linkman" class="span1-1"/></td>
     </tr>
     <tr>
       <td width="30%" align="right" nowrap="nowrap" bgcolor="#f1f1f1">联系人手机号：</td>
       <td width="70%">
-        <s:textfield name="supplier.linkmanTel" class="span2" data-options="required:true"/>
+        <s:textfield name="supplier.linkmanTel" class="span2 easyui-textbox" data-options="validType:'mobile'"/>
       </td>
     </tr>
   </table>

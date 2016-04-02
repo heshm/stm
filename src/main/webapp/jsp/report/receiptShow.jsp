@@ -17,11 +17,18 @@ $(document).ready(function(){
 		window.print();  
     });
 });
+function showBillImage(receiptNo){
+	var url = "<%=request.getContextPath()%>/stm/receiptBillImageShow.action?receiptNo=" + receiptNo;
+	location.href = url;
+}
 </script>
 </head>
 <body>
 	<div id="mainArea" style="width: 900px; margin: auto;">
 	    <div style="width: 900px;  height:auto ;margin: auto; text-align :center">
+	        <s:if test="%{receiptBillForm.receipt.type==0}">
+	            <h4>其它入库单</h4>
+	        </s:if>
 	        <s:if test="%{receiptBillForm.receipt.type==1}">
 	            <h4>采购入库单</h4>
 	        </s:if>
@@ -70,7 +77,7 @@ $(document).ready(function(){
 			<table class="table table-bordered">
 				<thead>
 					<tr>
-						<td colspan="4"><a>发票扫描件</a></td>
+						<td colspan="4"><a href="javascript:showBillImage('<s:property value="%{receiptBillForm.receipt.receiptNo}"/>')">发票扫描件</a></td>
 					</tr>
 					<tr>
 						<td align="center" width="30px" bgcolor="#f1f1f1"><strong>序号</strong></td>

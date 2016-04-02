@@ -30,6 +30,9 @@
 		<s:if test="%{deliveryBillForm.delivery.type==4}">
 			<h4>领用退库单</h4>
 		</s:if>
+		<s:if test="%{deliveryBillForm.delivery.type==5}">
+			<h4>其它出库单</h4>
+		</s:if>
 	</div>
 	<div style="width: 900px; margin: auto;">
 		<s:form name="deliveryBillForm" method="post" action=""

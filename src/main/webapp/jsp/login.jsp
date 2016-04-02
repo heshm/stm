@@ -43,14 +43,14 @@ $(document).ready(function(){
       <td height="25" valign="bottom"><label for="userName">用户名：</label></td>
     </tr>
     <tr>
-      <td><s:textfield id="userName" name="userName" value="admin" theme="simple" class="login_input login_user"/>
+      <td><s:textfield id="userName" name="userName" theme="simple" class="login_input login_user"/>
       </td>
     </tr>
     <tr>
       <td height="35" valign="bottom"><label for="passWord">密  码：</label></td>
     </tr>
     <tr>
-      <td><s:password id="passWord" name="passWord" value="111" theme="simple" class="login_input login_password"/>
+      <td><s:password id="passWord" name="passWord" theme="simple" class="login_input login_password"/>
       </td>
     </tr>
     <tr>

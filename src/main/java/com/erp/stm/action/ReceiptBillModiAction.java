@@ -39,7 +39,7 @@ public class ReceiptBillModiAction extends CmAction{
 			receiptBillForm.getReceipt().setWriteDate(CommonUtil.getCurrentDate("yyyy-MM-dd"));
 			receiptBillForm.getReceipt().setReceiptNo(CommonUtil.getNextRKSeqNo(sqNo));
 			//writeDate = CommonUtil.getCurrentDate("yyyy-MM-dd");
-			//receiptNo = CommonUtil.getNextRKSeqNo(sqNo);
+			receiptNo = receiptBillForm.getReceipt().getReceiptNo();
 		}
 		//System.out.println(docketType);
 		return SUCCESS;

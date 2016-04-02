@@ -34,10 +34,31 @@
 		<action name="receiptBillModiInit" class="com.erp.stm.action.ReceiptBillModiAction" method="init">
 			<result name="success" type="tiles">erp.stm.receiptBillModi</result>
 		</action>
-		
 	 
 		<action name="receiptBillModi" class="com.erp.stm.action.ReceiptBillModiAction" method="modi">
 			<result name="success" type="tiles">erp.stm.receiptBillModi</result>
+		</action>
+		
+		<action name="receiptBillUpload" class="com.erp.stm.action.ReceiptBillImageAction" method="upload">
+			<param name="saveDirectory">/img/billImages</param>  
+			<result name="success" type="json">
+			    <param name="root">status</param>
+			</result>
+			<result name="input" type="json">
+			    <param name="root">status</param>
+			</result>
+		</action>
+		
+		<action name="receiptBillImageShow" class="com.erp.stm.action.ReceiptBillImageAction" method="showImages">
+			<param name="saveDirectory">/img/billImages</param>  
+			<result name="success">/jsp/stm/receiptBillImageShow.jsp</result>
+		</action>
+		
+		<action name="receiptBillImageDelete" class="com.erp.stm.action.ReceiptBillImageAction" method="delete">
+			<param name="saveDirectory">/img/billImages</param>  
+			<result name="success" type="json">
+			    <param name="root">status</param>
+			</result>
 		</action>
 		
 		<action name="deliveryBillInit" class="com.erp.stm.action.DeliveryBillAction" method="init">

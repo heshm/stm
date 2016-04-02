@@ -65,7 +65,7 @@ function unCheckOneDelivery(deliveryNo){
   <table class="table table-bordered">
     <tr>
       <td width="10%" align="right" nowrap="nowrap" bgcolor="#f1f1f1">单据号码：</td>
-      <td width="23%"><s:textfield name="searchForm.deliveryNo"  class="span2" theme="simple"/></td>
+      <td width="23%"><s:textfield name="searchForm.deliveryNo"  class="span2"  theme="simple"/></td>
       <td width="10%" align="right" nowrap="nowrap" bgcolor="#f1f1f1">开单时间：</td>
       <td width="43%">
         <s:textfield name="searchForm.startDate" class="easyui-datebox span1-1" theme="simple"/>
@@ -79,7 +79,7 @@ function unCheckOneDelivery(deliveryNo){
     </tr>
   </table>
   </s:form>
-  <table  class="margin-bottom-20 table  no-border" >
+  <table  class="margin-bottom-20 table no-border" >
     <tr>
       <td class="text-center"><a class="easyui-linkbutton" style="width:80px;" onclick="getPageData(1)">查询</a></td>
     </tr>
