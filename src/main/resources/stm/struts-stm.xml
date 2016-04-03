@@ -40,13 +40,21 @@
 		</action>
 		
 		<action name="receiptBillUpload" class="com.erp.stm.action.ReceiptBillImageAction" method="upload">
+			<interceptor-ref name="defaultStack">
+                <!-- 文件过滤 -->
+                <param name="fileUpload.allowedTypes">image/bmp,image/png,image/gif,image/jpeg,image/jpg,image/jpe</param>
+                <!-- 文件大小, 以字节为单位 -->
+                <param name="fileUpload.maximumSize">5242880</param>
+            </interceptor-ref>
 			<param name="saveDirectory">/img/billImages</param>  
 			<result name="success" type="json">
 			    <param name="root">status</param>
 			</result>
+	
 			<result name="input" type="json">
 			    <param name="root">status</param>
 			</result>
+			
 		</action>
 		
 		<action name="receiptBillImageShow" class="com.erp.stm.action.ReceiptBillImageAction" method="showImages">

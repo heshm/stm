@@ -50,6 +50,9 @@ $(document).ready(function(){
         	var status = data.result;
         	if(status == 1){
         		$('.uploadTd').html("<a id='upload' class='btn btn-mini btn-primary'>继续上传</a>");
+        	}else{
+        		$main.messager.alert('系统提示','上传失败,请检查文件类型及大小','info');
+        		$('.uploadTd').html("<a id='upload' class='btn btn-mini btn-primary'>重新上传</a>");
         	}
         	//alert(data.context);
             //data.context.text('Upload finished.');

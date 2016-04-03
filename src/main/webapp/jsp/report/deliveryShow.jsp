@@ -11,7 +11,7 @@
 	href="<%=request.getContextPath()%>/css/bootstrap.css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/css.css" />
 <script type="text/javascript"
-	src="<%=request.getContextPath()%>/js/jquery-2.1.4.js"></script>
+	src="<%=request.getContextPath()%>/js/jquery-2.2.2.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('.print').on('click', function() {

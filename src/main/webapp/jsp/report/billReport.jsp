@@ -41,7 +41,7 @@ function getPageData(index){
       </td>
       <td width="20%" align="right" nowrap="nowrap" bgcolor="#f1f1f1">单据类型：</td>
       <td width="30%">
-           <s:select name="type" list="#{'0':'其它入库','1':'采购入库','2':'生产入库','3':'采购退货','4':'领用退库'}" class="span1-1" theme="simple" headerKey="" headerValue="全部" />
+           <s:select name="type" list="#{'0':'其它入库','1':'采购入库','2':'生产入库','3':'采购退货','4':'领用退库','5':'其它出库'}" class="span1-1 easyui-combobox" theme="simple" headerKey="" headerValue="全部" />
       </td>
     </tr>
   </table>

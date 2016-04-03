@@ -89,7 +89,7 @@ function unCheckOneReceipt(billNo){
       </td>
       <td width="10%" align="right" nowrap="nowrap" bgcolor="#f1f1f1">审核状态：</td>
       <td>
-        <s:select name="searchForm.status" list="#{'0':'未审核','1':'已审核'}" class="span1-1" headerKey="" headerValue="请选择"/>
+        <s:select name="searchForm.status" list="#{'0':'未审核','1':'已审核'}" class="span1-1 easyui-combobox" headerKey="" headerValue="请选择"/>
       </td>
     </tr>
   </table>

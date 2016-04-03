@@ -12,10 +12,11 @@ import java.io.FileOutputStream;
 import org.apache.commons.io.IOUtils;
 import org.apache.struts2.ServletActionContext;
 
+import com.erp.common.action.CmAction;
 import com.erp.common.util.Const;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class ReceiptBillImageAction extends ActionSupport{
+public class ReceiptBillImageAction extends CmAction{
 
 	private File upload;
 	private String uploadContentType;
@@ -25,25 +26,27 @@ public class ReceiptBillImageAction extends ActionSupport{
 	private int status;
 	private String[] fileArray;
 	
-	public String upload() throws Exception{
+	public String upload(){
+		status = Const.FAILURE;
+		try{
+		    String uploadPath = getSaveDirectory() + "/" + receiptNo;
 		
-		String uploadPath = getSaveDirectory() + "/" + receiptNo;
+		    File outFile = new File(uploadPath);
+		    if(!outFile.exists()){
+			    outFile.mkdir();
+		    }
 		
-		File outFile = new File(uploadPath);
-		if(!outFile.exists()){
-			outFile.mkdir();
-		}
-		
-		//System.out.println(uploadPath);
-	 
-		InputStream in = new FileInputStream(getUpload());  
-		OutputStream out = new FileOutputStream(uploadPath + "/" + uploadFileName); 
-		IOUtils.copy(in, out);
-		out.flush();  
-        IOUtils.closeQuietly(in);  
-        IOUtils.closeQuietly(out);  
-        System.out.println("Test Times");
-        status = Const.SUCCESS;
+		    InputStream in = new FileInputStream(getUpload());  
+		    OutputStream out = new FileOutputStream(uploadPath + "/" + uploadFileName); 
+		    IOUtils.copy(in, out);
+		    out.flush();  
+            IOUtils.closeQuietly(in);  
+            IOUtils.closeQuietly(out);  
+            //System.out.println("Test Times");
+            status = Const.SUCCESS;
+        }catch(Exception e){
+        	log.error(e.getMessage());
+        }
 		return SUCCESS;
 	}
 	
