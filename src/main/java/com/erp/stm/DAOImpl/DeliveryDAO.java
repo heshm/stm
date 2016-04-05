@@ -61,4 +61,11 @@ public class DeliveryDAO implements IDeliveryDAO {
 		return sqlSession.insert(INSERT_ONE_DELIVERY, delivery);
 	}
 
+	@SuppressWarnings("rawtypes")
+	@Override
+	public int deleteOneDelivery(Map parmMap) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete(DELETE_ONE_DELIVERY, parmMap);
+	}
+
 }

@@ -6,6 +6,8 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import com.erp.report.IDAO.IInventoryReportDAO;
+import com.erp.report.model.DeliveryReport;
+import com.erp.report.model.ReceiptReport;
 
 public class InventoryReportDAO implements IInventoryReportDAO {
 	
@@ -23,13 +25,25 @@ public class InventoryReportDAO implements IInventoryReportDAO {
 	@Override
 	public List selectPageList(Map paramMap) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(SELECT_INVENTORY_REPORT_PAGEDATA, paramMap);
+		return sqlSession.selectList(SELECT_INVENTORY_REPORT_CURRENT_PAGEDATA, paramMap);
 	}
 
 	@Override
 	public int selectTotleCount(Map paramMap) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(SELECT_INVENTORY_REPORT_PAGECNT, paramMap);
+	}
+
+	@Override
+	public ReceiptReport selectReceiptReport(Map map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(SELECT_RECEIPT_REPORT, map);
+	}
+
+	@Override
+	public DeliveryReport selectDeliveryReport(Map map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(SELECT_DELIVERY_REPORT, map);
 	}
 
 }

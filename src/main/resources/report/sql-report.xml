@@ -53,7 +53,7 @@
         <include refid="InventoryReportWhere" />
     </select>
     
-    <select id="selectInventoryReportPageData" resultMap="InventoryReportMap">
+    <select id="selectInventoryReportCurrentPageData" resultMap="InventoryReportMap">
         <include refid="page.pageSelectList" />
         SELECT
             DEPOT_ID,
@@ -84,6 +84,70 @@
             SUBSTR(A.COMMODITY_TYPE,1,2) = C.GROUP_ID
         <include refid="InventoryReportWhere" />
         <include refid="page.pageWhereList" />
+    </select>
+    
+    <resultMap id="ReceiptReportMap" type="ReceiptReport" >
+        <result column="depot_id" property="depotId" jdbcType="CHAR" />
+        <result column="COMMODITY_TYPE" property="commodityType" jdbcType="CHAR" />
+        <result column="in_quantity" property="inQuantity" jdbcType="REAL" />
+        <result column="in_amount" property="inAmount" jdbcType="DECIMAL" />
+        <result column="in_tax_amt" property="inTaxAmt" jdbcType="DECIMAL" />
+    </resultMap>
+    
+    <select id="selectReceiptReport" resultMap="ReceiptReportMap">
+        SELECT
+            A.DEPOT_ID        DEPOT_ID,
+            A.COMMODITY_TYPE  COMMODITY_TYPE,
+            SUM(A.QUANTITY)   in_quantity,
+            SUM(A.AMOUNT)     in_amount,
+            SUM(A.TAX_AMT)    in_tax_amt
+        FROM
+            TB_RECEIPT_DETAIL A
+        LEFT JOIN
+            TB_RECEIPT B
+        ON
+            A.DEPOT_ID = B.DEPOT_ID
+        AND A.RECEIPT_NO = B.RECEIPT_NO
+        WHERE
+            B.STATUS = '1'
+        AND SUBSTR(B.CONFIRM_DATE,1,10) &gt; #{endDate,jdbcType=CHAR}
+        AND a.DEPOT_ID = #{depotId,jdbcType=CHAR}
+        AND a.COMMODITY_TYPE = #{commodityType,jdbcType=CHAR}
+        GROUP BY
+            A.DEPOT_ID,
+            A.COMMODITY_TYPE
+    </select>
+    
+    <resultMap id="DeliveryReportMap" type="DeliveryReport" >
+        <result column="depot_id" property="depotId" jdbcType="CHAR" />
+        <result column="COMMODITY_TYPE" property="commodityType" jdbcType="CHAR" />
+        <result column="out_quantity" property="outQuantity" jdbcType="REAL" />
+        <result column="out_amount" property="outAmount" jdbcType="DECIMAL" />
+        <result column="out_tax_amt" property="outTaxAmt" jdbcType="DECIMAL" />
+    </resultMap>
+    
+    <select id="selectDeliveryReport" resultMap="DeliveryReportMap">
+        SELECT
+            A.DEPOT_ID DEPOT_ID,
+            A.COMMODITY_TYPE COMMODITY_TYPE,
+            SUM(A.QUANTITY) out_quantity,
+            SUM(A.AMOUNT) out_amount,
+            SUM(A.TAX_AMT) out_tax_amt
+        FROM
+            TB_DELIVERY_DETAIL A
+        LEFT JOIN
+            TB_DELIVERY B
+        ON
+            A.DEPOT_ID = B.DEPOT_ID
+        AND A.DELIVERY_NO = B.DELIVERY_NO
+        WHERE
+            STATUS = '1'
+        AND SUBSTR(B.CONFIRM_DATE,1,10) &gt; #{endDate,jdbcType=CHAR}
+        AND a.DEPOT_ID = #{depotId,jdbcType=CHAR}
+        AND a.COMMODITY_TYPE = #{commodityType,jdbcType=CHAR}
+        GROUP BY
+            A.DEPOT_ID,
+            A.COMMODITY_TYPE  
     </select>
     
     <resultMap id="BillReportMap" type="BillReport" >

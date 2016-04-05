@@ -92,6 +92,10 @@
 			<result name="success" type="tiles">erp.stm.deliveryBill</result>
 		</action>
 		
+		<action name="deliveryBillDelete" class="com.erp.stm.action.DeliveryBillAction" method="delete">
+			<result name="success" type="tiles">erp.stm.deliveryBill</result>
+		</action>
+		
 		<action name="deliveryBillModiInit" class="com.erp.stm.action.DeliveryBillModiAction" method="init">
 			<result name="success" type="tiles">erp.stm.deliveryBillModi</result>
 		</action>

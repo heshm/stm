@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,9 +48,8 @@ public class ReceiptBillAction extends CmAction{
 		return SUCCESS;
 	}
 	
+	@RequiresRoles(value={"sysadmin"}, logical= Logical.OR)
 	public String delete(){
-		Subject subject = SecurityUtils.getSubject();
-	    Session session = subject.getSession();
 		Map<String,Object> parmMap = new HashMap<String,Object>();
 		parmMap.put("depotId", Const.DEFAULT_DEPOT_ID);
 		parmMap.put("receiptNo", receiptNo);
@@ -58,6 +59,7 @@ public class ReceiptBillAction extends CmAction{
 		return SUCCESS;
 	}
 
+	@RequiresRoles(value={"sysadmin","stockman"}, logical= Logical.OR)
 	public String check(){
 		try{
 			Subject subject = SecurityUtils.getSubject();
@@ -73,6 +75,7 @@ public class ReceiptBillAction extends CmAction{
 		return SUCCESS;
 	}
 	
+	@RequiresRoles(value={"sysadmin"}, logical= Logical.OR)
 	public String unCheck(){
 		try{
 			Subject subject = SecurityUtils.getSubject();

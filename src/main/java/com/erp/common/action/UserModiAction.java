@@ -31,13 +31,13 @@ public class UserModiAction extends CmAction{
 	
 	@RequiresRoles(value={"sysadmin"}, logical= Logical.OR)
 	public String modi(){
-		//System.out.println("SSSS:" + update);
 		if(Const.UPDATE_RECORD.equals(update)){
 			userService.updateUser(user);
+			this.addActionMessage("用户信息修改成功!");
 		}else{
 			try{
 			    userService.addOneUser(user);
-			    this.addActionMessage("用户信息修改成功!");
+			    this.addActionMessage("用户信息新增成功!");
 			}catch(RuntimeException e){
 				this.addActionError(e.getMessage());
 				log.error(e.getMessage());

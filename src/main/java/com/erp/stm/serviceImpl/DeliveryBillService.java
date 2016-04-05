@@ -90,7 +90,7 @@ public class DeliveryBillService implements IDeliveryBillService{
 			}
 		}else{
 			//Do insert
-			System.out.println("BBBBBBBBBBBBBBBBBB");
+			//System.out.println("BBBBBBBBBBBBBBBBBB");
 			delivery.setWriteDate(CommonUtil.getCurrentDate("yyyy-MM-dd HH:mm:ss "));
 			delivery.setConfirmDate("");
 			delivery.setAuditorId("");

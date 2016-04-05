@@ -19,5 +19,7 @@ public interface IUserService {
 	public abstract int updateUser(User user);
 	
 	public abstract int deleteOneUser(String userId);
+	
+	public abstract int resetPass(User user,String userId);
 
 }

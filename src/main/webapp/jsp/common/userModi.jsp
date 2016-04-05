@@ -47,10 +47,40 @@ function userFormSubmit(){
 			</tr>
 			<tr>
 				<td align="right" nowrap="nowrap" bgcolor="#f1f1f1">手机：</td>
-				<td colspan="3"><s:textfield name="user.telNo" class="span2 easyui-textbox" data-options="required:true,validType:'length[11,14]'"/></td>
+				<td><s:textfield name="user.telNo" class="span2 easyui-textbox" data-options="required:true,validType:'length[11,14]'"/></td>
+			</tr>
+			<tr>
+			    <td align="right" nowrap="nowrap" bgcolor="#f1f1f1">角色：</td>
+				<td>
+				    <s:set var="role" value="%{user.role}"/>
+				    <div class="checkbox"> 
+				        <label>
+				            <s:if test="%{#role.contains('employee')}">
+				              <input name="user.role" type="checkbox" value="employee" checked="checked">
+				            </s:if>
+				            <s:else>
+				               <input name="user.role" type="checkbox" value="employee">
+				            </s:else>
+				            <span>一般员工</span>
+				        </label>
+				    </div>
+				    <div class="checkbox"> 
+				        <label>
+				          <s:if test="%{#role.contains('stockman')}">
+				            <input name="user.role" type="checkbox" value="stockman" checked="checked">
+				          </s:if>
+				          <s:else>
+				            <input name="user.role" type="checkbox" value="stockman">
+				          </s:else>
+				          <span>仓库管理员</span>
+				        </label>
+				    </div>
+				    <div class="checkbox"> 
+				        <label><input name="user.role" type="checkbox" value="sysadmin" disabled="disabled"><span>系统管理员</span></label>
+				    </div>
+	            </td>
 			</tr>
 		</table>
-		<s:hidden name="user.role"/>
 		<s:hidden name="user.status"/>
 		<s:hidden name="update"/>
 		</s:form>

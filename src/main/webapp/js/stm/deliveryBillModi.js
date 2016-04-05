@@ -63,6 +63,82 @@ function tableResort($obj){
 		i++;
 	});
 }
+function addNewOutProduct(){
+	if(top.$("#lookUpForm").form('enableValidation').form('validate')){
+		var exist = false;  //记录是否存在标志
+		
+		var groupId = top.$("#groupId").val();
+		var groupName = top.$("#groupName").text();
+		var typeId = top.$("#typeId").val();
+		var hpmc = top.$("#hpmc").text();
+		var ppmc = top.$("#ppmc").val();
+		var guige = top.$("#guige").val();
+		var danjia = top.$("#danjia").val();
+		var shuliang = top.$("#shuliang").val();
+		var taxRate = top.$("#taxRate").val();
+		var danwei = top.$("#danwei").val();
+		var code = groupId + typeId;
+		
+		var jine = danjia * shuliang;
+		jine = jine.toFixed(2);
+		
+		var shuie = danjia * shuliang * taxRate / 100;
+		shuie = shuie.toFixed(2);
+		
+		$("#data").find('tr').each(function(){
+			$td = $(this).children("td");
+			var text = $.trim($td.eq(2).text());
+			if(text == code){
+				var msg = "货品编码为(" + code + ")的记录已经存在!";
+				$main.messager.alert('系统提示',msg,'warning');
+				exist = true;
+				return;
+			}	
+		});
+		
+		//alert(groupId);alert(groupName);alert(typeId);alert(hpmc);alert(ppmc);
+		//alert(guige);alert(danjia);alert(shuliang);alert(taxRate);
+		var newRow = "<tr>" +
+        "<td align='center'><input name='sel' type='checkbox'></td>" +
+		"<td align='center'>1</td>" +
+		"<td align='center'>" + code +
+		"<input type='hidden' name='deliveryBillForm.deliveryDetailList[0].commodityType' value='" + code + "'/>" +
+		"</td>" +
+		"<td align='center'>" + hpmc + "</td>" +
+		"<td align='center'>" + groupName + "</td>" +
+	    "<td align='center'><input type='text' name='deliveryBillForm.deliveryDetailList[0].brand' value='" + ppmc + "' id='input6' class='span1 text-center'/></td>" +
+		"<td align='center'><input type='text' name='deliveryBillForm.deliveryDetailList[0].norm' value='" + guige + "' id='input6' class='span1 text-center'/></td>" +
+		"<td align='center'><input type='text' name='deliveryBillForm.deliveryDetailList[0].quantity' value='" + shuliang+ "' id='input8' class=' span1 text-center'/></td>" +
+		"<td align='center'>" + danwei + "</td>" +
+	    "<td align='center'><input type='text' name='deliveryBillForm.deliveryDetailList[0].unitPrice' value='" + danjia + "' id='input8' class=' span1 text-center'/></td>" +
+		"<td align='center'><input type='text' name='deliveryBillForm.deliveryDetailList[0].amount' value='" + jine + "' id='input8' class=' span1-1 text-center'/></td>" +
+		"<td align='center'><input type='text' name='deliveryBillForm.deliveryDetailList[0].taxRate' value='" + taxRate + "' id='input8' class=' span1 text-center'/>%</td>" +
+		"<td align='center'><input type='text' name='deliveryBillForm.deliveryDetailList[0].taxAmt' value='" + shuie + "' id='input8' class=' span1-1 text-center'/></td>" +
+        "</tr>";
+        //alert(newRow);
+        if(!exist){
+        	 $("#data").append(newRow);
+        	 tableResort($("#data"));
+        }		
+	}
+}
+
+function deliveryBillUpdate(){
+	if($("#deliveryBillForm").form('enableValidation').form('validate')){
+		$main.messager.confirm('系统提示', '输入无误,确认提交?', function(r){
+			if (r){
+				//document.deliveryBillForm.submit();
+				if ($("input[name='print']").is(':checked')){
+					var htmlAddr = "deliveryBillModi.action?print=1";
+					document.deliveryBillForm.action=htmlAddr;
+					document.deliveryBillForm.submit();
+				}else{
+					document.deliveryBillForm.submit();
+				}
+			}
+		});
+	}
+}
 /**
 function addNewRow(){
 	var groupId=$("#selectGroupId").val();

@@ -22,7 +22,7 @@ function getPageData(index){
       
       <td width="10%" align="right" nowrap="nowrap" bgcolor="#f1f1f1">货品类别：</td>
       <td width="23%">
-        <s:select name="commodityType" list="%{#session.productGroup}" class="span2" listKey="groupId" listValue="groupName" theme="simple" headerKey="" headerValue="全部" />
+        <s:select name="commodityType" list="%{#session.productGroup}" class="span2 easyui-combobox" listKey="groupId" listValue="groupName" theme="simple" headerKey="" headerValue="全部" />
       </td>
       <td width="10%" align="right" nowrap="nowrap" bgcolor="#f1f1f1">货品名称：</td>
       <td width="23%"><s:textfield name="name"  class="span2" theme="simple"/></td>

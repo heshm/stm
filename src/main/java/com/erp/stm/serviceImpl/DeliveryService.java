@@ -26,7 +26,7 @@ public class DeliveryService implements IDeliveryService{
 	}
 
 	@Override
-	public List<Delivery> gettMulDelivery(@SuppressWarnings("rawtypes") Map map) {
+	public List<Delivery> getMulDelivery(@SuppressWarnings("rawtypes") Map map) {
 		// TODO Auto-generated method stub
 		return deliveryDAO.selectMulDelivery(map);
 	}
@@ -66,6 +66,12 @@ public class DeliveryService implements IDeliveryService{
 	public String getDeliverySeq(String depotId) {
 		// TODO Auto-generated method stub
 		return deliveryDAO.selectDeliverySeq(depotId);
+	}
+
+	@Override
+	public int deleteOneDelivery(@SuppressWarnings("rawtypes") Map parmMap) {
+		// TODO Auto-generated method stub
+		return deliveryDAO.deleteOneDelivery(parmMap);
 	}
 
 }

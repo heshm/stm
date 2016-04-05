@@ -427,6 +427,12 @@
         AND DELIVERY_NO = #{deliveryNo,jdbcType=CHAR}
     </update>
     
+    <delete id="deleteOneDelivery" parameterType="java.util.Map">
+        DELETE FROM TB_DELIVERY
+        WHERE DEPOT_ID = #{depotId,jdbcType=CHAR}
+         AND DELIVERY_NO = #{deliveryNo,jdbcType=CHAR}
+    </delete>
+    
     <resultMap id="DeliveryDetailResultMap" type="DeliveryDetail">
         <id column="DEPOT_ID" property="depotId" jdbcType="CHAR" />
         <id column="DELIVERY_NO" property="deliveryNo" jdbcType="CHAR" />

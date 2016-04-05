@@ -8,8 +8,10 @@ import com.erp.stm.model.Delivery;
 
 public interface IDeliveryService extends IPageService<Delivery>{
 	
-	public abstract List<Delivery> gettMulDelivery(@SuppressWarnings("rawtypes") Map map);
+	public abstract List<Delivery> getMulDelivery(@SuppressWarnings("rawtypes") Map map);
 	
 	public abstract String getDeliverySeq(String depotId);
+	
+	public abstract int deleteOneDelivery(@SuppressWarnings("rawtypes") Map parmMap);
 
 }

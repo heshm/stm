@@ -30,7 +30,7 @@ public class ReceiptBillImageAction extends CmAction{
 		status = Const.FAILURE;
 		try{
 		    String uploadPath = getSaveDirectory() + "/" + receiptNo;
-		
+		    System.out.println(uploadPath);
 		    File outFile = new File(uploadPath);
 		    if(!outFile.exists()){
 			    outFile.mkdir();

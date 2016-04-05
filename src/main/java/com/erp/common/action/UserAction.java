@@ -31,7 +31,6 @@ public class UserAction extends CmAction{
 		//System.out.println(newpass);
 		Subject subject = SecurityUtils.getSubject();
 	    Session session = subject.getSession();
-	    
 	    User user = (User)session.getAttribute("user");
 	    try{
 	    	userService.changePass(user, oldpass, newpass);
@@ -43,6 +42,20 @@ public class UserAction extends CmAction{
 		return SUCCESS;
 	}
 	
+	@RequiresRoles(value={"sysadmin"}, logical= Logical.OR)
+	public String resetPass(){
+		Session session = this.getSession();
+		User user = (User)session.getAttribute("user");
+		try{
+			userService.resetPass(user, userId);
+			message = "用户(" + userId + ")的密码重置成功!";
+		}catch(RuntimeException e){
+	    	message = e.getMessage();
+	    }
+		return SUCCESS;
+	}
+	
+	@RequiresRoles(value={"sysadmin"}, logical= Logical.OR)
 	public String delete(){
 		try{
 	    	userService.deleteOneUser(userId);

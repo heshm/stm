@@ -1,12 +1,12 @@
 package com.erp.stm.action;
 
 import java.util.HashMap;
-import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.session.Session;
-import org.apache.shiro.subject.Subject;
 
 import com.erp.common.action.CmAction;
 import com.erp.common.model.Page;
@@ -42,6 +42,7 @@ public class DeliveryBillAction extends CmAction{
 		return SUCCESS;
 	}
 	
+	@RequiresRoles(value={"sysadmin","stockman"}, logical= Logical.OR)
 	public String check(){
 		try{
 		    Session session = this.getSession();
@@ -60,6 +61,7 @@ public class DeliveryBillAction extends CmAction{
 		return SUCCESS;
 	}
 	
+	@RequiresRoles(value={"sysadmin"}, logical= Logical.OR)
 	public String unCheck(){
 		try{
 		    Session session = this.getSession();
@@ -71,6 +73,17 @@ public class DeliveryBillAction extends CmAction{
 			this.addActionError(e.getMessage());
 		}
 	    page = getIndexPage();
+		return SUCCESS;
+	}
+	
+	@RequiresRoles(value={"sysadmin"}, logical= Logical.OR)
+	public String delete(){
+		Map<String,String> parmMap = new HashMap<String,String>();
+		parmMap.put("depotId", Const.DEFAULT_DEPOT_ID);
+		parmMap.put("deliveryNo", deliveryNo);
+		deliveryService.deleteOneDelivery(parmMap);
+		this.addActionMessage("单号为(" + deliveryNo + ")的记录删除成功!");
+		page = getIndexPage();
 		return SUCCESS;
 	}
 

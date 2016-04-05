@@ -2,45 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <head>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/stm/deliveryBill.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	
 });
-function getPageData(index){
-	var htmlAddress = "deliveryBillQuery.action?index=" + index;
-	document.queryForm.action = htmlAddress;
-	document.queryForm.submit();
-}
-function getBillDetail(billNo){
-	var docketType = $("#docketType").val();
-	var htmlAddress = "deliveryBillModiInit.action?update=1&" + "deliveryNo=" + billNo + "&docketType=" + docketType;;
-	location.href = htmlAddress;
-}
-function checkOneDelivery(deliveryNo){
-	var index = $('#currentPage').val();
-	var htmlAddress = "deliveryBillCheck.action?deliveryNo=" + deliveryNo + "&index=" + index;
-	var msg = "确定审核单号为:" + deliveryNo + "的单据?";
-	
-	$main.messager.confirm('系统提示',msg, function(r){
-		if (r){
-			document.queryForm.action = htmlAddress;
-			document.queryForm.submit();
-		}
-	});
-	
-}
-function unCheckOneDelivery(deliveryNo){
-	var index = $('#currentPage').val();
-	var htmlAddress = "deliveryBillUnCheck.action?deliveryNo=" + deliveryNo + "&index=" + index;
-	var msg = "确定反审核单号为:" + deliveryNo + "的单据?";
-	
-	$main.messager.confirm('系统提示',msg, function(r){
-		if (r){
-			document.queryForm.action = htmlAddress;
-			document.queryForm.submit();
-		}
-	});
-}
+
 </script>
 </head>
 <body>
@@ -74,7 +41,7 @@ function unCheckOneDelivery(deliveryNo){
       </td>
       <td width="10%" align="right" nowrap="nowrap" bgcolor="#f1f1f1">审核状态：</td>
       <td>
-        <s:select name="searchForm.status" list="#{'0':'未审核','1':'已审核'}" class="span1-1" headerKey="" headerValue="请选择"/>
+        <s:select name="searchForm.status" list="#{'0':'未审核','1':'已审核'}" class="span1-1 easyui-combobox" headerKey="" headerValue="请选择"/>
       </td>
     </tr>
   </table>
@@ -117,7 +84,7 @@ function unCheckOneDelivery(deliveryNo){
         <td nowrap="nowrap"><s:property value="#pageData.confirmDate.substring(0,10)"/></td>
         <td nowrap="nowrap">
           <s:if test="%{#pageData.status==0}">
-            <a href="javascript:deleteOneReceipt('<s:property value="#pageData.deliveryNo"/>');">删除</a> 
+            <a href="javascript:deleteOneDelivery('<s:property value="#pageData.deliveryNo"/>');">删除</a> 
             <a href="javascript:getBillDetail('<s:property value="#pageData.deliveryNo"/>')">详情</a>
             <a href="javascript:checkOneDelivery('<s:property value="#pageData.deliveryNo"/><s:property value="#productType.typeId"/>');">审核</a>
             <span style="color: #999999;cursor: default;background-color: transparent;">反审</span>

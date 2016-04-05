@@ -22,6 +22,8 @@ public interface IDeliveryDAO extends IPageDAO{
 	
 	public static final String INSERT_ONE_DELIVERY = "insertOneDelivery";
 	
+	public static final String DELETE_ONE_DELIVERY = "deleteOneDelivery";
+	
 	public abstract List<Delivery> selectMulDelivery(@SuppressWarnings("rawtypes") Map map);
 	
 	public abstract Delivery selectOneDelivery(@SuppressWarnings("rawtypes") Map map);
@@ -31,5 +33,7 @@ public interface IDeliveryDAO extends IPageDAO{
 	public abstract int updateOneDelivery(Delivery delivery);
 	
 	public abstract int insertOneDelivery(Delivery delivery);
+	
+	public abstract int deleteOneDelivery(@SuppressWarnings("rawtypes") Map parmMap);
 
 }

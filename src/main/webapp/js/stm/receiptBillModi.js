@@ -6,6 +6,10 @@ $(document).ready(function(){
 		});
 		$('form a').each(function(){
 			$(this).addClass("disabled");
+			if($(this).hasClass("btn")){
+				$(this).removeAttr('href');
+			}
+			
 		});
 		$('.save').addClass("disabled");
         $('.save').prop("disabled","disabled");
@@ -107,9 +111,9 @@ function addNewInProduct(){
 			"<td align='center'>" + groupName + "</td>" +
 		    "<td align='center'><input type='text' name='receiptBillForm.receiptDetail[0].brand' value='" + ppmc + "' id='input6' class='span1 text-center'/></td>" +
 			"<td align='center'><input type='text' name='receiptBillForm.receiptDetail[0].norm' value='" + guige + "' id='input6' class='span1 text-center'/></td>" +
-			"<td align='center'><input type='text' name='receiptBillForm.receiptDetail[0].quantity' value='" + danjia + "' id='input8' class=' span1 text-center'/></td>" +
+			"<td align='center'><input type='text' name='receiptBillForm.receiptDetail[0].quantity' value='" + shuliang + "' id='input8' class=' span1 text-center'/></td>" +
 			"<td align='center'>" + danwei + "</td>" +
-		    "<td align='center'><input type='text' name='receiptBillForm.receiptDetail[0].unitPrice' value='" + shuliang + "' id='input8' class=' span1 text-center'/></td>" +
+		    "<td align='center'><input type='text' name='receiptBillForm.receiptDetail[0].unitPrice' value='" + danjia+ "' id='input8' class=' span1 text-center'/></td>" +
 			"<td align='center'><input type='text' name='receiptBillForm.receiptDetail[0].amount' value='" + jine + "' id='input8' class=' span1-1 text-center'/></td>" +
 			"<td align='center'><input type='text' name='receiptBillForm.receiptDetail[0].taxRate' value='" + taxRate + "' id='input8' class=' span1 text-center'/>%</td>" +
 			"<td align='center'><input type='text' name='receiptBillForm.receiptDetail[0].taxAmt' value='" + shuie + "' id='input8' class=' span1-1 text-center'/></td>" +

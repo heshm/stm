@@ -69,7 +69,7 @@ public class UserService implements IUserService {
 		if(null != tbUser){
 			throw new RuntimeException("用户已经存在!");
 		}
-		String password = new Md5Hash(Const.DEFAULT_PASS_WORD).toString();;
+		String password = new Md5Hash(Const.DEFAULT_PASS_WORD).toString();
 		user.setPassword(password);
 		user.setStatus("1");
 		user.setRole("stockman");
@@ -81,6 +81,9 @@ public class UserService implements IUserService {
 		// TODO Auto-generated method stub
 		User tbUser = userDAO.selectByPrimaryKey(user.getUserId());
 		user.setPassword(tbUser.getPassword());
+		if(null == user.getRole()){
+			user.setRole(tbUser.getRole());
+		}
 		return userDAO.updateOneUser(user);
 	}
 
@@ -91,6 +94,24 @@ public class UserService implements IUserService {
 			throw new RuntimeException("系统管理员账户不可删除!");
 		}
 		return userDAO.deleteByPrimaryKey(userId);
+	}
+
+	@Override
+	public int resetPass(User user, String userId) {
+		if(!user.getUserId().equals("admin")){
+			throw new RuntimeException("非系统管理员账户不可重置他人密码!");
+		}
+		if(user.getUserId().equals(userId)){
+			throw new RuntimeException("不可重置本人密码!");
+		}
+		User tbUser = userDAO.selectByPrimaryKey(userId);
+		if(null != tbUser){
+			String password = new Md5Hash(Const.DEFAULT_PASS_WORD).toString();
+			tbUser.setPassword(password);
+			return userDAO.updateOneUser(tbUser);
+		}else{
+			return Const.FAILURE;
+		}
 	}
 
 	

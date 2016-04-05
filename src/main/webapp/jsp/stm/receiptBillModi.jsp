@@ -170,7 +170,7 @@ function clearBillImage(receiptNo){
 		  </td>
 		  <td colspan="9">    
 		    <input id="imageUpload" class="easyui-filebox span4" name="upload" data-options="prompt:'发票扫描件上传',buttonAlign:'left',buttonText:'选择图片'"/>
-		    <a href="#" onclick="clearBillImage('<s:property value="%{receiptNo}"/>')" class="btn btn-mini btn-danger">清空</a>&nbsp;&nbsp;
+		    <a href="javascript:clearBillImage('<s:property value="%{receiptNo}"/>');"  class="btn btn-mini btn-danger">清空</a>&nbsp;&nbsp;
 		    <a href="javascript:showBillImage('<s:property value="%{receiptNo}"/>');">发票扫描件查看</a> 
 		  </td>
 		</tr>

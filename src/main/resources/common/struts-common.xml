@@ -11,6 +11,12 @@
 		    </result>
 		</action>
 		
+		<action name="passReset" class="com.erp.common.action.UserAction" method="resetPass">
+			<result type="json">
+		        <param name="root">message</param>
+		    </result>
+		</action>
+		
 		<action name="userInit" class="com.erp.common.action.UserAction" method="init">
 			<result name="success" type="tiles">erp.common.user</result>
 		</action>
@@ -105,6 +111,7 @@
 		<action name="SimpleLookUpInit" class="com.erp.common.action.LookUpAction" method="lookUpSimple">
 		    <result name="success">/jsp/common/lookUpDataSetSimple.jsp</result>
 		</action>
+		
 		<!--  
 		<action name="ajaxGetProductTypeList" class="com.erp.common.action.StaticModal" method="ajaxGetProductTypeList">
 		    <result type="json">

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.erp.common.action.CmAction;
 import com.erp.common.model.Page;
+import com.erp.common.util.CommonUtil;
 import com.erp.common.util.Const;
 import com.erp.report.IService.IInventoryReportService;
 import com.erp.report.model.InventoryReport;
@@ -29,11 +30,18 @@ public class InventoryReoprtAction extends CmAction {
 	}
 	
 	public String query(){
-		Map<String,String> map = new HashMap<String,String>();
-		map.put("depotId", Const.DEFAULT_DEPOT_ID);
-		map.put("commodityType", commodityType);
-		map.put("name", name);
-		page = inventoryReportService.getIndexPage(index, map);
+		//String currentDate = CommonUtil.getCurrentDate();
+		//System.out.println(currentDate);
+		//if((null != cutDate)&&(!"".equals(cutDate))&&(!currentDate.equals(cutDate))){
+		//	this.addActionError("对不起,目前只能查询当前日期库存!");
+		//}else{
+			Map<String,String> map = new HashMap<String,String>();
+			map.put("depotId", Const.DEFAULT_DEPOT_ID);
+			map.put("commodityType", commodityType);
+			map.put("name", name);
+			map.put("cutDate", cutDate);
+			page = inventoryReportService.getIndexPage(index, map);
+		//}
 		return SUCCESS;
 	}
 

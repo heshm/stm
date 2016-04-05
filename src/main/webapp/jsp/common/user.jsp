@@ -23,6 +23,23 @@ function addOneUser(){
 	var url = "userModiInit.action?update=0";
 	location.href = url;
 }
+function resetPass(userId){
+	var msg = "确地要重置(" + userId + ")的密码?";
+	$main.messager.confirm('密码修改', msg , function(r){
+		if (r){
+			$.ajax({
+			    cache:false,   
+		        url:'<%=request.getContextPath()%>/common/passReset.action',   
+			    type:'post',   
+			    dataType:'json',   
+			    data:{userId:userId},   
+			    success:function(msg){
+			    	$main.messager.alert('系统提示',msg,'info');
+			    }
+		    });
+		}
+	});
+}
 </script>
 <body>
 <div class="title_right">
@@ -45,12 +62,12 @@ function addOneUser(){
       <tr align="center">
         <td nowrap="nowrap"><s:property value="#sn"/></td>
         <td nowrap="nowrap"><s:property value="#user.userId"/></td>
-        <td nowrap="nowrap"><s:property value="#user.userName"/></td>
+        <td nowrap="nowrap"><a href="javascript:updateOneUser('<s:property value="#user.userId"/>');"><s:property value="#user.userName"/></a></td>
         <td nowrap="nowrap"><s:property value="#user.email"/></td>
         <td nowrap="nowrap"><s:property value="#user.telNo"/></td>
         <td nowrap="nowrap">
           <a class="btn btn-danger btn-mini" href="javascript:deleteOneUser('<s:property value="#user.userId"/>');">删除</a> 
-          <a class="btn btn-info btn-mini" href="javascript:updateOneUser('<s:property value="#user.userId"/>');">编辑</a>
+          <a class="btn btn-info btn-mini" href="javascript:resetPass('<s:property value="#user.userId"/>');">重置密码</a>
         </td>
       </tr>
       <s:set var="sn" value="#sn + 1" />  
