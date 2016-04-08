@@ -6,8 +6,12 @@ $(document).ready(function(){
 		});
 		$('form a').each(function(){
 			$(this).addClass("disabled");
+			if($(this).hasClass("btn")){
+				$(this).removeAttr('href');
+				$(this).removeAttr('onclick');
+			}
 		});
-        $('.save').addClass("disabled");
+		$('.save').addClass("disabled");
         $('.save').prop("disabled","disabled");
 	};
 

@@ -40,7 +40,7 @@ function getPageData(index){
     </tr>
   </table>
   <div style="width:900px; height:340px; margin:auto; overflow-y:auto;">
-  <table class="table table-bordered table-hover table-striped">
+  <table class="table table-striped table-bordered table-hover">
     <tbody>
       <tr align="center">
         <td nowrap="nowrap"><strong>序号</strong></td>

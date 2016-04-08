@@ -50,7 +50,7 @@ $(document).ready(function(){
 	</div>
 </div>
 <div data-options="fit:false,region:'center',border:false">
-	<div id="tabs" class="easyui-tabs" data-options="fit:true,border:false" >
+	<div id="tabs" class="easyui-tabs" data-options="fit:true,border:false">
 		<tiles:insertAttribute name="main"/>
 	</div>
 </div>

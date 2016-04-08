@@ -8,6 +8,7 @@ $(document).ready(function(){
 			$(this).addClass("disabled");
 			if($(this).hasClass("btn")){
 				$(this).removeAttr('href');
+				$(this).removeAttr('onclick');
 			}
 			
 		});

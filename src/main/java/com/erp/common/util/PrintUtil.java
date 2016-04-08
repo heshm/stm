@@ -87,6 +87,10 @@ public class PrintUtil {
         form.setField("jingbanren", billForm.getDelivery().getRegistrant());
         form.setField("shenheren", billForm.getDelivery().getAuditor());
         form.setField("printTime", CommonUtil.getCurrentDate());
+        
+        System.out.println(billForm.getSumAmount());
+        System.out.println(billForm.getSumTaxAmt());
+        
         form.setField("bigSumAmt", CommonUtil.digitUppercase(billForm.getSumAmount()));
         form.setField("bigSumTaxAmt", CommonUtil.digitUppercase(billForm.getSumTaxAmt()));
         

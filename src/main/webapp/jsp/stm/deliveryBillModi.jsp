@@ -165,8 +165,8 @@ $(document).ready(function(){
 	<table class="margin-bottom-20  table no-border">
 		<tr>
 			<td class="text-center">
-			   <a class="easyui-linkbutton" style="width:80px" onclick="deliveryBillUpdate();">保存</a> 
-               <a class="easyui-linkbutton" style="width:80px" onclick="location.href='deliveryBillInit.action?docketType=<s:property value="%{docketType}"/>';">返回</a> 
+			   <a class="btn btn-small save" style="width:50px" onclick="deliveryBillUpdate();">保存</a> 
+               <a class="btn btn-small" style="width:50px" onclick="location.href='deliveryBillInit.action?docketType=<s:property value="%{docketType}"/>';">返回</a> 
 			</td>
 		</tr>
 		<tr>

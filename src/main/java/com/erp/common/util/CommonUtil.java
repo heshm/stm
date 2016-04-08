@@ -5,8 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.Map;
+
 
 import org.apache.commons.lang.StringUtils;
 
@@ -94,65 +93,50 @@ public class CommonUtil {
 	}
 
 	public static String digitUppercase(BigDecimal bigDecimal) {
-		String fraction[] = { "角", "分" };
-		String digit[] = { "零", "壹", "贰", "叁", "肆", "伍", "陆", "柒", "捌", "玖" };
-		/**
-		 * 仟 佰 拾 ' ' ' ' $4 $3 $2 $1 万 $8 $7 $6 $5 亿 $12 $11 $10 $9
-		 */
-		String unit1[] = { "", "拾", "佰", "仟" };// 把钱数分成段,每四个一段,实际上得到的是一个二维数组
-		String unit2[] = { "元", "万", "亿", "万亿" }; // 把钱数分成段,每四个一段,实际上得到的是一个二维数组
-		//BigDecimal bigDecimal = new BigDecimal(num);
-		bigDecimal = bigDecimal.multiply(new BigDecimal(100));
-		// Double bigDecimal = new Double(name*100); 存在精度问题 eg：145296.8
-		String strVal = String.valueOf(bigDecimal.toBigInteger());
-		String head = strVal.substring(0, strVal.length() - 2); // 整数部分
-		String end = strVal.substring(strVal.length() - 2); // 小数部分
-		String endMoney = "";
-		String headMoney = "";
-		if ("00".equals(end)) {
-			endMoney = "整";
-		} else {
-			if (!end.substring(0, 1).equals("0")) {
-				endMoney += digit[Integer.valueOf(end.substring(0, 1))] + "角";
-			} else if (end.substring(0, 1).equals("0") && !end.substring(1, 2).equals("0")) {
-				endMoney += "零";
-			}
-			if (!end.substring(1, 2).equals("0")) {
-				endMoney += digit[Integer.valueOf(end.substring(1, 2))] + "分";
+		final String UNIT = "万仟佰拾亿仟佰拾万仟佰拾元角分";
+		final String DIGIT = "零壹贰叁肆伍陆柒捌玖" ;
+		String bigAmount = "";
+		bigDecimal = bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP);  //截尾
+		bigDecimal = bigDecimal.multiply(new BigDecimal("100")).setScale(0);
+
+		String strAmt = bigDecimal.toString();
+		if("0".equals(strAmt)){
+			return "零元整";
+		}
+		if(strAmt.length() > 15){
+			throw new RuntimeException("金额超系统上限");
+		}
+
+		int i = 0; 
+		int j = UNIT.length() - strAmt.length();
+		boolean isZero = false;
+		for(; i<strAmt.length(); i++,j++){
+			char ch = strAmt.charAt(i);
+			if(ch == '0'){
+				isZero = true;
+				if (UNIT.charAt(j) == '亿' || UNIT.charAt(j) == '万' || UNIT.charAt(j) == '元') {
+					bigAmount = bigAmount + UNIT.charAt(j);
+					isZero = false;
+				}
+			}else{
+				if (isZero) {
+					bigAmount = bigAmount + "零";
+					isZero = false;
+				}
+				bigAmount = bigAmount + DIGIT.charAt(ch - '0') + UNIT.charAt(j);
 			}
 		}
-		char[] chars = head.toCharArray();
-		Map<String, Boolean> map = new HashMap<String, Boolean>();// 段位置是否已出现zero
-		boolean zeroKeepFlag = false;// 0连续出现标志
-		int vidxtemp = 0;
-		for (int i = 0; i < chars.length; i++) {
-			int idx = (chars.length - 1 - i) % 4;// 段内位置 unit1
-			int vidx = (chars.length - 1 - i) / 4;// 段位置 unit2
-			String s = digit[Integer.valueOf(String.valueOf(chars[i]))];
-			if (!"零".equals(s)) {
-				headMoney += s + unit1[idx] + unit2[vidx];
-				zeroKeepFlag = false;
-			} else if (i == chars.length - 1 || map.get("zero" + vidx) != null) {
-				headMoney += "";
-			} else {
-				headMoney += s;
-				zeroKeepFlag = true;
-				map.put("zero" + vidx, true);// 该段位已经出现0；
-			}
-			if (vidxtemp != vidx || i == chars.length - 1) {
-				headMoney = headMoney.replaceAll(unit2[vidx], "");
-				headMoney += unit2[vidx];
-			}
-			if (zeroKeepFlag && (chars.length - 1 - i) % 4 == 0) {
-				headMoney = headMoney.replaceAll("零", "");
-			}
+		if (strAmt.endsWith("00")) {
+			bigAmount = bigAmount + "整";
 		}
-		return headMoney + endMoney;
+		bigAmount = bigAmount.replaceAll("亿万", "亿");
+		return bigAmount;
+		
 	}
 
 	public static void main(String[] args) throws Exception {
 
-		System.out.println(digitUppercase(new BigDecimal("3534543.00")));
+		System.out.println(digitUppercase(new BigDecimal("700003")));
 	}
 
 }

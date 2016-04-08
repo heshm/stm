@@ -28,6 +28,7 @@ function closeCurrent(){
 					</div>
 					<div class="oper">
 						<p><a href="javascript:closeCurrent();">关闭该页面&gt;</a></p>
+						<p><a href="javascript:history.back();">返回上一页面&gt;</a></p>
 					</div>
 				</div>
 			</div>
