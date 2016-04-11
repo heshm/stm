@@ -75,14 +75,13 @@
                 /js/* = anon  
                 /css/* = anon  
                 /img/* = anon  
+                /service/** = anon  
                 /login.action* = anon
                 /logout = logout  
                 # some example chain definitions:
                 #/admin/** = authc, roles[admin]
                 #/docs/** = authc, perms[document:read]
                 /** = authc
-                #/common/** = authc
-                #/acrl/** = authc
                 # more URL-to-FilterChain definitions here
             </value>
         </property>

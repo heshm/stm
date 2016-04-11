@@ -3,7 +3,12 @@ package com.erp.common.serviceImpl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.jws.WebService;
+
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.crypto.hash.Md5Hash;
+import org.apache.shiro.subject.Subject;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.erp.common.IDAO.IUserDAO;
@@ -11,6 +16,7 @@ import com.erp.common.IService.IUserService;
 import com.erp.common.model.User;
 import com.erp.common.util.Const;
 
+@WebService(endpointInterface = "com.erp.common.IService.IUserService")
 @Transactional
 public class UserService implements IUserService {
 	
@@ -112,6 +118,19 @@ public class UserService implements IUserService {
 		}else{
 			return Const.FAILURE;
 		}
+	}
+
+	@Override
+	public int login(String userName, String password) {
+		char[] passwd = new Md5Hash(password).toString().toCharArray();
+		Subject subject = SecurityUtils.getSubject();
+		UsernamePasswordToken token = new UsernamePasswordToken();
+		token.setUsername(userName);
+		token.setPassword(passwd);
+		token.setRememberMe(false);
+		subject.login(token);
+		
+		return Const.SUCCESS;
 	}
 
 	

@@ -19,6 +19,15 @@ public class LoginAction extends ActionSupport{
 	private IUserService userService;
 	
 	public String login(){
+		try{
+			userService.login(userName, passWord);
+		}catch(Exception e){
+			this.addActionError(e.getMessage());
+			//System.out.println(e.getMessage());
+			return INPUT;
+		}
+		
+		/*
 		char[] passwd = new Md5Hash(passWord).toString().toCharArray();
 		Subject subject = SecurityUtils.getSubject();
 		//System.out.println("BBBB");
@@ -28,15 +37,16 @@ public class LoginAction extends ActionSupport{
 		token.setRememberMe(false);
 		
 		try{
-			System.out.println("Login called");
-			System.out.println(token.getPassword());
+			//System.out.println("Login called");
+			//System.out.println(token.getPassword());
 			subject.login(token);
-			System.out.println(token.getPassword());
+			//System.out.println(token.getPassword());
 		}catch(AuthenticationException e){
 			this.addActionError(e.getMessage());
-			System.out.println(e.getMessage());
+			//System.out.println(e.getMessage());
 			return INPUT;
 		}
+		*/
 		
 		return SUCCESS;
 	}
