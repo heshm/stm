@@ -16,7 +16,6 @@ import com.erp.common.IService.IUserService;
 import com.erp.common.model.User;
 import com.erp.common.util.Const;
 
-@WebService(endpointInterface = "com.erp.common.IService.IUserService")
 @Transactional
 public class UserService implements IUserService {
 	

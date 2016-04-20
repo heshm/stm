@@ -1,11 +1,9 @@
 package com.erp.common.IService;
 
 import java.util.List;
-import javax.jws.WebService;
 
 import com.erp.common.model.User;
 
-@WebService
 public interface IUserService {
 	
 	public abstract User getOneUser(String userId);

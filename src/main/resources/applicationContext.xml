@@ -74,8 +74,7 @@
             <value>
                 /js/* = anon  
                 /css/* = anon  
-                /img/* = anon  
-                /service/** = anon  
+                /img/* = anon   
                 /login.action* = anon
                 /logout = logout  
                 # some example chain definitions:

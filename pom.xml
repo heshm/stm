@@ -7,6 +7,11 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>stm Maven Webapp</name>
     <url>http://maven.apache.org</url>
+    <properties>
+        <spring.version>4.2.4.RELEASE</spring.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>    
+        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>     
+    </properties>
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -22,42 +27,42 @@
         <dependency>
 	        <groupId>org.springframework</groupId>
 	        <artifactId>spring-core</artifactId>
-	        <version>4.2.4.RELEASE</version>
+	        <version>${spring.version}</version>
         </dependency>
         <dependency>
 	        <groupId>org.springframework</groupId>
 	        <artifactId>spring-context</artifactId>
-	        <version>4.2.4.RELEASE</version>
+	        <version>${spring.version}</version>
         </dependency>
         <dependency>
 	        <groupId>org.springframework</groupId>
 	        <artifactId>spring-beans</artifactId>
-	        <version>4.2.4.RELEASE</version>
+	        <version>${spring.version}</version>
         </dependency>
         <dependency>
 	        <groupId>org.springframework</groupId>
 	        <artifactId>spring-web</artifactId>
-	        <version>4.2.4.RELEASE</version>
+	        <version>${spring.version}</version>
         </dependency>
         <dependency>
 	        <groupId>org.springframework</groupId>
 	        <artifactId>spring-aop</artifactId>
-	        <version>4.2.4.RELEASE</version>
+	        <version>${spring.version}</version>
         </dependency>
         <dependency>
 	        <groupId>org.springframework</groupId>
 	        <artifactId>spring-tx</artifactId>
-	        <version>4.2.4.RELEASE</version>
+	        <version>${spring.version}</version>
         </dependency>
         <dependency>
 	        <groupId>org.springframework</groupId>
 	        <artifactId>spring-jdbc</artifactId>
-	        <version>4.2.4.RELEASE</version>
+	        <version>${spring.version}</version>
         </dependency>
         <dependency>
 	        <groupId>org.springframework</groupId>
 	        <artifactId>spring-aspects</artifactId>
-	        <version>4.2.4.RELEASE</version>
+	        <version>${spring.version}</version>
         </dependency>
         
         <dependency>
@@ -81,37 +86,39 @@
 	        <version>2.3.24.1</version>
         </dependency>
         
+        <!-- 
         <dependency>
 	        <groupId>org.apache.cxf</groupId>
 	        <artifactId>cxf-core</artifactId>
-	        <version>3.1.6</version>
+	        <version>${cxf.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-frontend-jaxws</artifactId>
-            <version>3.1.6</version>
+            <version>${cxf.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-transports-http</artifactId>
-            <version>3.1.6</version>
+            <version>${cxf.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-management</artifactId>
-            <version>3.1.6</version>
+            <version>${cxf.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.cxf</groupId>
             <artifactId>cxf-rt-features-metrics</artifactId>
-            <version>3.1.6</version>
+            <version>${cxf.version}</version>
         </dependency>
         <dependency>
 	        <groupId>org.apache.cxf</groupId>
-	        <artifactId>cxf-rt-databinding-xmlbeans</artifactId>
-	        <version>3.1.6</version>
+	        <artifactId>cxf-rt-databinding-aegis</artifactId>
+	        <version>${cxf.version}</version>
         </dependency>
-        
+         -->
+         
         <dependency>
 	        <groupId>org.apache.tiles</groupId>
 	        <artifactId>tiles-core</artifactId>
@@ -211,8 +218,5 @@
     <build>
         <finalName>stm</finalName>
     </build>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>    
-        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>     
-   </properties>
+    
 </project>

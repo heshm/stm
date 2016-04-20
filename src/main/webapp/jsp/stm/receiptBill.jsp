@@ -14,15 +14,15 @@ $(document).ready(function(){
 <body>
 <div class="title_right">
   <s:if test="%{docketType==0}">
-    <span class="pull-right margin-bottom-5"><a class="btn btn-info btn-small" href="receiptBillModiInit?update=0&docketType=0"><i class="icon-plus icon-white"></i>新建其它入库单</a></span>
+    <span class="pull-right margin-bottom-5"><a class="btn btn-primary btn-small" href="receiptBillModiInit.action?update=0&docketType=0"><i class="icon-plus icon-white"></i>新建其它入库单</a></span>
     <strong>其它入库单查询</strong>
   </s:if>
   <s:if test="%{docketType==1}">
-    <span class="pull-right margin-bottom-5"><a class="btn btn-info btn-small" href="receiptBillModiInit?update=0&docketType=1"><i class="icon-plus icon-white"></i>新建采购入库单</a></span>
+    <span class="pull-right margin-bottom-5"><a class="btn btn-primary btn-small" href="receiptBillModiInit.action?update=0&docketType=1"><i class="icon-plus icon-white"></i>新建采购入库单</a></span>
     <strong>采购入库单查询</strong>
   </s:if>
   <s:if test="%{docketType==2}">
-    <span class="pull-right margin-bottom-5"><a class="btn btn-info btn-small" href="receiptBillModiInit?update=0&docketType=2"><i class="icon-plus icon-white"></i>新建生产入库单</a></span>
+    <span class="pull-right margin-bottom-5"><a class="btn btn-primary btn-small" href="receiptBillModiInit.action?update=0&docketType=2"><i class="icon-plus icon-white"></i>新建生产入库单</a></span>
     <strong>生产入库单查询</strong>
   </s:if>
 </div>  

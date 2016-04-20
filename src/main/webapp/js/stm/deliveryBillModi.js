@@ -12,7 +12,8 @@ $(document).ready(function(){
 			}
 		});
 		$('.save').addClass("disabled");
-        $('.save').prop("disabled","disabled");
+		$('.save').removeAttr('onclick');
+        
 	};
 
     $('.del').on('click',function(){
